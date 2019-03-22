@@ -10,3 +10,8 @@
   margin: 2px;
   background-color: yellowgreen;
 }
+
+input[class="lesson__checkbox"]:checked ~ span {
+  text-decoration: line-through;
+  color: #8e8e8e;
+}

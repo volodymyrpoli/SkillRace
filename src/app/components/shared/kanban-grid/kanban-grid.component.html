@@ -3,14 +3,14 @@
   <tr>
     <td></td>
     <app-kanban-header-cell
-      [title]="level.name"
-      *ngFor="let level of grid.levels">
+      [level]="level"
+      *ngFor="let level of grid.levels | sortBy:'order'">
     </app-kanban-header-cell>
   </tr>
   </thead>
   <tbody>
     <app-kanban-row
-      *ngFor="let domain of grid.domains"
+      *ngFor="let domain of grid.domains | sortBy:'order'"
       [domain]="domain"
       [levels]="grid.levels">
     </app-kanban-row>

@@ -10,6 +10,7 @@ import { KanbanRowComponent } from './components/shared/kanban-grid/kanban-row/k
 import { KanbanCellComponent } from './components/shared/kanban-grid/kanban-cell/kanban-cell.component';
 import { KanbanFixedCellComponent } from './components/shared/kanban-grid/kanban-fixed-cell/kanban-fixed-cell.component';
 import { KanbanHeaderCellComponent } from './components/shared/kanban-grid/kanban-header-cell/kanban-header-cell.component';
+import { SortByPipe } from './pipes/sort-by.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { KanbanHeaderCellComponent } from './components/shared/kanban-grid/kanba
     KanbanCellComponent,
     KanbanFixedCellComponent,
     KanbanHeaderCellComponent,
+    SortByPipe,
   ],
   imports: [
     BrowserModule,

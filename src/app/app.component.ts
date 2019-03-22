@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { KanbanGrid } from './components/entity/KanbanGrid';
+import { Level } from './components/entity/Level';
 
 @Component({
   selector: 'app-root',
@@ -16,28 +17,18 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const student = new Level(AppComponent.getId(), 'Student', 1, 'skyblue');
+    const intern = new Level(AppComponent.getId(), 'Intern', 2, 'yellowgreen');
+    const junior = new Level(AppComponent.getId(), 'Junior', 3, 'gold');
     this.grid = {
       levels: [
-        {
-          id: 1,
-          order: 1,
-          name: 'Basic'
-        },
-        {
-          id: 2,
-          order: 2,
-          name: 'Junior'
-        },
-        {
-          id: 3,
-          order: 3,
-          name: 'Senior'
-        },
+        student, intern, junior
       ],
       domains: [
         {
           id: AppComponent.getId(),
           name: 'Front-end',
+          order: 2,
           topics: [
             {
               id: AppComponent.getId(),
@@ -45,13 +36,9 @@ export class AppComponent implements OnInit {
               lessons: [
                 {
                   id: AppComponent.getId(),
-                  name: 'Animate',
+                  name: 'Animation',
                   checked: true,
-                  level: {
-                    id: 1,
-                    order: 1,
-                    name: 'Basic'
-                  }
+                  level: student
                 }
               ]
             },
@@ -63,11 +50,7 @@ export class AppComponent implements OnInit {
                   id: AppComponent.getId(),
                   name: 'DOM',
                   checked: true,
-                  level: {
-                    id: 1,
-                    order: 1,
-                    name: 'Basic'
-                  }
+                  level: student
                 }
               ]
             },
@@ -79,11 +62,7 @@ export class AppComponent implements OnInit {
                   id: AppComponent.getId(),
                   name: 'Async',
                   checked: false,
-                  level: {
-                    id: 3,
-                    order: 1,
-                    name: 'Basic'
-                  }
+                  level: junior
                 }
               ]
             },
@@ -92,6 +71,7 @@ export class AppComponent implements OnInit {
         {
           id: AppComponent.getId(),
           name: 'Back-end',
+          order: 1,
           topics: [
             {
               id: AppComponent.getId(),
@@ -99,13 +79,15 @@ export class AppComponent implements OnInit {
               lessons: [
                 {
                   id: AppComponent.getId(),
-                  name: 'Animate',
+                  name: 'For loop',
                   checked: true,
-                  level: {
-                    id: 2,
-                    order: 1,
-                    name: 'Junior'
-                  }
+                  level: student
+                },
+                {
+                  id: AppComponent.getId(),
+                  name: 'While loop',
+                  checked: true,
+                  level: student
                 }
               ]
             },
@@ -117,31 +99,25 @@ export class AppComponent implements OnInit {
                   id: AppComponent.getId(),
                   name: 'Dependency injection',
                   checked: false,
-                  level: {
-                    id: 2,
-                    order: 1,
-                    name: 'Junior'
-                  }
+                  level: intern
                 },
                 {
                   id: AppComponent.getId(),
                   name: 'JPA',
-                  checked: true,
-                  level: {
-                    id: 1,
-                    order: 1,
-                    name: 'Basic'
-                  }
+                  checked: false,
+                  level: intern
                 },
                 {
                   id: AppComponent.getId(),
                   name: 'Hibernate',
                   checked: false,
-                  level: {
-                    id: 1,
-                    order: 1,
-                    name: 'Basic'
-                  }
+                  level: intern
+                },
+                {
+                  id: AppComponent.getId(),
+                  name: 'Auth0',
+                  checked: true,
+                  level: junior
                 },
               ]
             },
