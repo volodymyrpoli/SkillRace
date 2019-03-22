@@ -1,0 +1,24 @@
+h2 {
+  margin: 0;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead > tr {
+  height: 50px;
+}
+
+thead > tr,
+tbody app-kanban-row {
+  border-bottom: 1px solid black;
+  background-image: linear-gradient(aliceblue 0%, #dae0e7 90%, aliceblue 100%);
+}
+
+tbody app-kanban-row {
+  min-height: 200px;
+  height: 200px;
+}
+
+

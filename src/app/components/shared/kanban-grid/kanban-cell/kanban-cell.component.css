@@ -1,0 +1,10 @@
+:host {
+  display: table-cell;
+}
+
+.flex__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 300px;
+}

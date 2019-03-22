@@ -1,0 +1,7 @@
+:host {
+  display: table-row;
+}
+
+app-kanban-cell {
+  vertical-align: top;
+}

@@ -1,6 +1,10 @@
-<div class="main__card__wrapper" draggable="true">
-  {{ getText(2) }}
-  <hr>
-  <label><input type="checkbox">{{ getText(2) }}</label><br>
-  <label><input type="checkbox">{{ getText(2) }}</label>
-</div>
+<mat-card class="main__card__wrapper" draggable="true">
+  <mat-card-header>
+    <mat-card-title>{{ getText(2) }}</mat-card-title>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <label><input matInput type="checkbox" [checked]="getRandomCheck()">{{ getText(2) }}</label><br>
+    <label><input type="checkbox" [checked]="getRandomCheck()">{{ getText(2) }}</label>
+  </mat-card-content>
+</mat-card>

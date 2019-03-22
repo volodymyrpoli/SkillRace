@@ -3,12 +3,10 @@
 }
 
 .main__card__wrapper {
-  border: 1px solid forestgreen;
   min-height: 50px;
   width: 134px;
-  margin: 2px;
-  border-radius: 4px;
   overflow: hidden;
   padding: 4px;
+  margin: 2px;
   background-color: yellowgreen;
 }

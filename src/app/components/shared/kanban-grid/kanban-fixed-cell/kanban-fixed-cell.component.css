@@ -1,0 +1,16 @@
+:host {
+  display: table-cell;
+  vertical-align: middle;
+  max-width: 50px;
+}
+
+div {
+  transform: rotate(-90deg);
+  display: flex;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+div h2 {
+  margin: 0;
+}
