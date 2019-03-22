@@ -1,5 +1,6 @@
-<app-kanban-fixed-cell></app-kanban-fixed-cell>
-<app-kanban-cell></app-kanban-cell>
-<app-kanban-cell></app-kanban-cell>
-<app-kanban-cell></app-kanban-cell>
-<app-kanban-cell></app-kanban-cell>
+<app-kanban-fixed-cell [domain]="domain"></app-kanban-fixed-cell>
+<app-kanban-cell
+  *ngFor="let level of levels"
+  [level]="level"
+  [topics]="getTopicsWithLessonsFor(level)">
+</app-kanban-cell>

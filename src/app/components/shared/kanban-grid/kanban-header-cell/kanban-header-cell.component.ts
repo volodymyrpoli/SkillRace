@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-kanban-header-cell',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./kanban-header-cell.component.css']
 })
 export class KanbanHeaderCellComponent implements OnInit {
+
+  @Input() title: string;
 
   constructor() { }
 

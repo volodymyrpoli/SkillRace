@@ -2,15 +2,17 @@
   <thead>
   <tr>
     <td></td>
-    <app-kanban-header-cell></app-kanban-header-cell>
-    <app-kanban-header-cell></app-kanban-header-cell>
-    <app-kanban-header-cell></app-kanban-header-cell>
-    <app-kanban-header-cell></app-kanban-header-cell>
+    <app-kanban-header-cell
+      [title]="level.name"
+      *ngFor="let level of grid.levels">
+    </app-kanban-header-cell>
   </tr>
   </thead>
   <tbody>
-    <app-kanban-row></app-kanban-row>
-    <app-kanban-row></app-kanban-row>
-    <app-kanban-row></app-kanban-row>
+    <app-kanban-row
+      *ngFor="let domain of grid.domains"
+      [domain]="domain"
+      [levels]="grid.levels">
+    </app-kanban-row>
   </tbody>
 </table>

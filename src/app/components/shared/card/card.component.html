@@ -1,10 +1,17 @@
 <mat-card class="main__card__wrapper" draggable="true">
   <mat-card-header>
-    <mat-card-title>{{ getText(2) }}</mat-card-title>
+    <mat-card-title>{{ topic.name }}</mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
-    <label><input matInput type="checkbox" [checked]="getRandomCheck()">{{ getText(2) }}</label><br>
-    <label><input type="checkbox" [checked]="getRandomCheck()">{{ getText(2) }}</label>
+    <div *ngFor="let lesson of topic.lessons">
+      <label>
+        <input
+          matInput
+          type="checkbox"
+          [checked]="lesson.checked">
+        {{ lesson.name }}
+      </label>
+    </div>
   </mat-card-content>
 </mat-card>

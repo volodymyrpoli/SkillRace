@@ -1,4 +1,6 @@
 <div class="flex__wrapper">
-  <app-card></app-card>
-  <app-card></app-card>
+  <app-card
+    [topic]="topic"
+    *ngFor="let topic of topics">
+  </app-card>
 </div>

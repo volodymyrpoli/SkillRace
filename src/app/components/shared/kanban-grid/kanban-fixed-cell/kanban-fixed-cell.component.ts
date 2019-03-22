@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Domain } from '../../../entity/Domain';
 
 @Component({
   selector: 'app-kanban-fixed-cell',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./kanban-fixed-cell.component.css']
 })
 export class KanbanFixedCellComponent implements OnInit {
+
+  @Input() domain: Domain;
 
   constructor() { }
 
