@@ -1,18 +1,20 @@
-<table>
-  <thead>
-  <tr>
-    <td></td>
-    <app-kanban-header-cell
-      [level]="level"
-      *ngFor="let level of grid.levels | sortBy:'order'">
-    </app-kanban-header-cell>
-  </tr>
-  </thead>
-  <tbody>
+<div class="kanban__wrapper">
+  <table>
+    <thead>
+    <tr>
+      <td></td>
+      <app-kanban-header-cell
+        [level]="level"
+        *ngFor="let level of grid.levels | sortBy:'order'">
+      </app-kanban-header-cell>
+    </tr>
+    </thead>
+    <tbody>
     <app-kanban-row
       *ngFor="let domain of grid.domains | sortBy:'order'"
       [domain]="domain"
       [levels]="grid.levels">
     </app-kanban-row>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>

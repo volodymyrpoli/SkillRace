@@ -1,0 +1,29 @@
+:host {
+  display: flex;
+}
+
+aside {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+aside > mat-card {
+  margin: 16px 8px 0 16px;
+}
+
+main {
+  flex: 5;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+main > mat-card {
+  max-width: 200px;
+  min-height: 180px;
+  margin: 16px;
+}
+
+main > mat-card:hover {
+  box-shadow: 0 0 5px 4px rgba(0,0,0,.2);
+}

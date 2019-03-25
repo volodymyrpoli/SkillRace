@@ -1,0 +1,37 @@
+.user__navigation {
+  height: 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(181, 181, 181, 0.62);
+  position: fixed;
+  width: 100vw;
+  z-index: 1;
+  border-bottom: 1px solid darkgrey;
+}
+
+.navigation__left,
+.navigation__center,
+.navigation__right {
+  display: flex;
+  align-items: center;
+}
+
+.user__navigation a {
+  padding: 6px;
+  text-decoration: none;
+  color: black;
+}
+
+.navigation__padding {
+  height: 36px;
+  width: 100vw;
+}
+
+.background__image {
+  background: linear-gradient(90deg, #efd5ff 0%, #515ada 100%);
+  position: fixed;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+}

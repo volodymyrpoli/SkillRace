@@ -1,6 +1,5 @@
 table {
   border-collapse: collapse;
-  border: 1px solid black;
 }
 
 thead > tr {
@@ -9,7 +8,7 @@ thead > tr {
 
 thead > tr,
 tbody app-kanban-row {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid silver;
   background-image: linear-gradient(aliceblue 0%, #dae0e7 90%, aliceblue 100%);
 }
 
@@ -19,3 +18,10 @@ tbody app-kanban-row {
 }
 
 
+.kanban__wrapper {
+  max-width: 100vw;
+  min-width: 100vw;
+  max-height: calc(100vh - 36px);
+  min-height: calc(100vh - 36px);
+  overflow: auto;
+}
