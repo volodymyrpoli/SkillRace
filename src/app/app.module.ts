@@ -11,6 +11,7 @@ import { KanbanCellComponent } from './components/shared/kanban-grid/kanban-cell
 import { KanbanFixedCellComponent } from './components/shared/kanban-grid/kanban-fixed-cell/kanban-fixed-cell.component';
 import { KanbanHeaderCellComponent } from './components/shared/kanban-grid/kanban-header-cell/kanban-header-cell.component';
 import { SortByPipe } from './pipes/sort-by.pipe';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { SortByPipe } from './pipes/sort-by.pipe';
     BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
