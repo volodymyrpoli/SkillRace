@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Topic } from '../../../entity/Topic';
-import { Level } from '../../../entity/Level';
+import { Topic } from '../../../../entity/Topic';
+import { Level } from '../../../../entity/Level';
 
 @Component({
   selector: 'app-kanban-cell',

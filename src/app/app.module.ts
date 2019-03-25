@@ -12,6 +12,9 @@ import { KanbanFixedCellComponent } from './components/shared/kanban-grid/kanban
 import { KanbanHeaderCellComponent } from './components/shared/kanban-grid/kanban-header-cell/kanban-header-cell.component';
 import { SortByPipe } from './pipes/sort-by.pipe';
 import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './components/pages/login/login.component';
+import { UserContainerComponent } from './components/pages/user-container/user-container.component';
+import { AdminContainerComponent } from './components/pages/admin-container/admin-container.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { AppRoutingModule } from './app-routing.module';
     KanbanFixedCellComponent,
     KanbanHeaderCellComponent,
     SortByPipe,
+    LoginComponent,
+    UserContainerComponent,
+    AdminContainerComponent,
   ],
   imports: [
     BrowserModule,

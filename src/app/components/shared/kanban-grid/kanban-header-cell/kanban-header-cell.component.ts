@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { Level } from '../../../entity/Level';
+import { Level } from '../../../../entity/Level';
 
 @Component({
   selector: 'app-kanban-header-cell',

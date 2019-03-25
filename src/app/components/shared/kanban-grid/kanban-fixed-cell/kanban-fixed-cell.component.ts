@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Domain } from '../../../entity/Domain';
+import { Domain } from '../../../../entity/Domain';
 
 @Component({
   selector: 'app-kanban-fixed-cell',

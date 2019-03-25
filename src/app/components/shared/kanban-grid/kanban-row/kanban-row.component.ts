@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Domain } from '../../../entity/Domain';
-import { Level } from '../../../entity/Level';
-import { Topic } from '../../../entity/Topic';
+import { Domain } from '../../../../entity/Domain';
+import { Level } from '../../../../entity/Level';
+import { Topic } from '../../../../entity/Topic';
 
 @Component({
   selector: 'app-kanban-row',

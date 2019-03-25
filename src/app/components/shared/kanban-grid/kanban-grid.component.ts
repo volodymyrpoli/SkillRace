@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { KanbanGrid } from '../../entity/KanbanGrid';
+import { KanbanGrid } from '../../../entity/KanbanGrid';
 
 @Component({
   selector: 'app-kanban-grid',

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Topic } from '../../entity/Topic';
+import { Topic } from '../../../entity/Topic';
 
 @Component({
   selector: 'app-card',
