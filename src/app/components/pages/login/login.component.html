@@ -1,5 +1,5 @@
 <div class="login__main__wrapper">
-  <form>
+  <form [formGroup]="formGroup" (ngSubmit)="login()">
     <mat-card class="login__card">
 
         <mat-card-header>
@@ -10,14 +10,15 @@
 
         <mat-card-content class="login__inputs">
           <mat-form-field>
-            <input matInput placeholder="Login" type="text">
+            <input matInput formControlName="login" placeholder="Login" type="text">
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput placeholder="Password" type="password">
+            <input matInput formControlName="password" placeholder="Password" type="password" [type]="hide ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="hide = !hide" style="cursor: pointer">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </mat-form-field>
 
-          <mat-checkbox>Remember me?</mat-checkbox>
+          <mat-checkbox formControlName="rememberMe">Remember me?</mat-checkbox>
         </mat-card-content>
 
         <mat-card-actions class="login__actions">
