@@ -1,0 +1,52 @@
+:host {
+  width: 100vw;
+  height: 100vh;
+}
+
+.navigation__padding {
+  height: 36px;
+  width: 100vw;
+}
+
+.admin__navigation {
+  width: 100vw;
+  height: 36px;
+  background-color: darkgrey;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+}
+
+.admin__navigation__content {
+  min-width: 800px;
+  display: flex;
+  align-items: center;
+}
+
+.admin__navigation__content a {
+  text-decoration: none;
+  color: black;
+  padding: 8px;
+}
+
+.admin__navigation__content a:hover {
+  background-color: #9c9c9c;
+}
+
+.admin__navigation__content a.logo {
+  font-weight: bold;
+}
+
+.push__right {
+  margin-left: auto;
+}
+
+.admin__main__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.admin__main__center {
+  min-width: 800px;
+}
