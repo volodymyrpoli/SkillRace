@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { KanbanGrid } from '../entity/KanbanGrid';
 import { Level } from '../entity/Level';
+import { Domain } from '../entity/Domain';
 
 @Injectable({
   providedIn: 'root'
@@ -125,13 +126,15 @@ export class GridRepositoryService {
       domains: [
         frontend,
         backend,
-        backend,
-        backend,
       ]
     };
   }
 
   getGrid() {
     return this.grid;
+  }
+
+  createDomain(domain: Domain): void {
+    this.grid.domains.push(domain);
   }
 }

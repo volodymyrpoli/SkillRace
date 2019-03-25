@@ -11,7 +11,7 @@
 .admin__navigation {
   width: 100vw;
   height: 36px;
-  background-color: darkgrey;
+  background-color: rgba(181, 181, 181, 0.62);
   display: flex;
   justify-content: center;
   position: fixed;
