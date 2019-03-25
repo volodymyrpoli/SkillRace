@@ -1,0 +1,31 @@
+:host {
+  width: 100vw;
+  height: 100vh;
+}
+
+.login__card {
+  max-width: 350px;
+  width: 350px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.login__main__wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+}
+
+.login__inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.login__actions {
+  text-align: right;
+}

@@ -1,3 +1,30 @@
-<p>
-  login works!
-</p>
+<div class="login__main__wrapper">
+  <form>
+    <mat-card class="login__card">
+
+        <mat-card-header>
+          <mat-card-title>
+            Sing in
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content class="login__inputs">
+          <mat-form-field>
+            <input matInput placeholder="Login" type="text">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Password" type="password">
+          </mat-form-field>
+
+          <mat-checkbox>Remember me?</mat-checkbox>
+        </mat-card-content>
+
+        <mat-card-actions class="login__actions">
+          <button mat-stroked-button color="primary" type="submit">Sign in</button>
+          <button mat-raised-button color="accent" type="button">Sign up</button>
+        </mat-card-actions>
+
+    </mat-card>
+  </form>
+</div>
