@@ -27,6 +27,7 @@
   text-decoration: none;
   color: black;
   padding: 8px;
+  border-right: 1px solid #9e9e9e;
 }
 
 .admin__navigation__content a:hover {
