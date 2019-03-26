@@ -10,7 +10,7 @@ import {
   MatDividerModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule, MatListModule
+  MatInputModule, MatListModule, MatSelectModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { KanbanGridComponent } from './components/shared/kanban-grid/kanban-grid.component';
@@ -27,10 +27,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/pages/user-container/dashboard/dashboard.component';
 import { GridComponent } from './components/pages/user-container/grid/grid.component';
 import { GridEditorComponent } from './components/pages/admin-container/grid-editor/grid-editor.component';
-import { GridEditorColumnComponent } from './components/pages/admin-container/grid-editor-column/grid-editor-column.component';
-import { GridEditorCellComponent } from './components/pages/admin-container/grid-editor-cell/grid-editor-cell.component';
-import { GridEditorBadgeComponent } from './components/pages/admin-container/grid-editor-badge/grid-editor-badge.component';
+import { GridEditorColumnComponent } from './components/pages/admin-container/grid-editor/grid-editor-column/grid-editor-column.component';
+import { GridEditorCellComponent } from './components/pages/admin-container/grid-editor/grid-editor-cell/grid-editor-cell.component';
+import { GridEditorBadgeComponent } from './components/pages/admin-container/grid-editor/grid-editor-badge/grid-editor-badge.component';
 import { HttpClientModule } from '@angular/common/http';
+import { GridEditorFormComponent } from './components/pages/admin-container/grid-editor/grid-editor-form/grid-editor-form.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { HttpClientModule } from '@angular/common/http';
     GridEditorColumnComponent,
     GridEditorCellComponent,
     GridEditorBadgeComponent,
+    GridEditorFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,7 +68,8 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MatIconModule,
     HttpClientModule,
-    MatListModule
+    MatListModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

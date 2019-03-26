@@ -1,0 +1,26 @@
+<div class="column__wrapper">
+  <div class="column__header">
+    <h2>
+      {{ category }}
+    </h2>
+    <mat-icon (click)="createItemClick($event)" [class.rotate]="createFormShow">add_box</mat-icon>
+  </div>
+  <div class="grid__column__wrapper">
+    <app-grid-editor-form
+      *ngIf="createFormShow"
+      (hideMe)="createFormShow = false"
+      [withBadge]="withBadge"
+      [levels]="levels">
+
+    </app-grid-editor-form>
+    <app-grid-editor-cell
+      *ngFor="let item of items"
+      [item]="item"
+      [selected]="item === selectedItem"
+      (select)="selectItem($event)"
+      [withBadge]="withBadge"
+      [getDataForBadge]="getDataForBadge">
+
+    </app-grid-editor-cell>
+  </div>
+</div>

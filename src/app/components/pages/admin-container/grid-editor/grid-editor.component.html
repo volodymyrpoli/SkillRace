@@ -16,8 +16,9 @@
   </app-grid-editor-column>
 
   <app-grid-editor-column
-    category="Lessons"
+    category="Subtopics"
     [withBadge]="true"
+    [levels]="levels$ | async"
     [getDataForBadge]="getDataForBadge"
     [items]="getItemsForSubtopic() | async"
     [selectedItem]="selectedSubtopic$ | async"

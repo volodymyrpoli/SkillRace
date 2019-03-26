@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BaseEntity } from '../../../../entity/BaseEntity';
+import { BaseEntity } from '../../../../../entity/BaseEntity';
 
 @Component({
   selector: 'app-grid-editor-cell',

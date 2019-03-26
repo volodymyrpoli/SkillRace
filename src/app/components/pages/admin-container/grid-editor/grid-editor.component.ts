@@ -5,6 +5,7 @@ import { Topic } from '../../../../entity/Topic';
 import { Subtopic } from '../../../../entity/Subtopic';
 import { BaseEntity } from '../../../../entity/BaseEntity';
 import { Observable, Subject } from 'rxjs';
+import { Level } from '../../../../entity/Level';
 
 @Component({
   selector: 'app-grid-editor',
@@ -19,6 +20,7 @@ export class GridEditorComponent implements OnInit {
   domains$: Subject<Domain[]> = new Subject();
   topics$: Subject<Topic[]> = new Subject();
   subtopics$: Subject<Subtopic[]> = new Subject();
+  levels$: Subject<Level[]> = new Subject();
 
   constructor(private gridRepository: GridRepositoryService) { }
 
@@ -30,6 +32,10 @@ export class GridEditorComponent implements OnInit {
           this.selectedDomain$.next(domains[0]);
         }
       }
+    );
+
+    this.gridRepository.getLevels().subscribe(
+      levels => this.levels$.next(levels)
     );
 
     this.selectedDomain$.subscribe(
@@ -70,25 +76,16 @@ export class GridEditorComponent implements OnInit {
     this.selectedSubtopic$.next(value as Subtopic);
   }
 
-  createDomain(name: string) {
-    alert('Need implementation');
-    const domain = new Domain(null, name, 0);
-    // this.getItemsForDomain().push(domain);
-    this.selectDomain(domain);
+  createDomain(event: Event) {
+
   }
 
-  createTopic(name: string) {
-    alert('Need implementation');
-    const topic = new Topic(null, name);
-    // this.getItemsForTopic().push(topic);
-    this.selectTopic(topic);
+  createTopic(event: Event) {
+
   }
 
-  createSubtopic(name: string) {
-    alert('Need implementation');
-    const lesson = new Subtopic(null, name);
-    // this.getItemsForSubtopic().push(lesson);
-    this.selectSubtopic(lesson);
+  createSubtopic(event: Event) {
+
   }
 
   getDataForBadge(item: BaseEntity): { color: string, name: string} {

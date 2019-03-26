@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BaseEntity } from '../../../../entity/BaseEntity';
+import { BaseEntity } from '../../../../../entity/BaseEntity';
+import { Level } from '../../../../../entity/Level';
 
 @Component({
   selector: 'app-grid-editor-column',
@@ -11,11 +12,13 @@ export class GridEditorColumnComponent implements OnInit {
   @Input() category: string;
   @Input() items: BaseEntity[];
   @Input() selectedItem: BaseEntity;
+  @Input() levels: Level[];
   @Input() withBadge = false;
   @Input() getDataForBadge: (item: BaseEntity) => { color: string, name: string};
+  @Input() createFormShow = false;
 
   @Output() select = new EventEmitter<BaseEntity>();
-  @Output() createItem = new EventEmitter<string>();
+  @Output() createItem = new EventEmitter<Event>();
 
   constructor() { }
 
@@ -26,8 +29,7 @@ export class GridEditorColumnComponent implements OnInit {
     this.select.emit(baseEntity);
   }
 
-  createItemClick() {
-    const name = prompt('Add title');
-    this.createItem.emit(name);
+  createItemClick(event: Event) {
+    this.createFormShow = !this.createFormShow;
   }
 }

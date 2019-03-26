@@ -1,0 +1,20 @@
+<div class="cursor__catcher" (click)="hide()"></div>
+<div class="form__wrapper">
+  <form [formGroup]="formGroup" (ngSubmit)="submit()">
+    <mat-form-field>
+      <input matInput placeholder="Write title for element" type="text" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field *ngIf="withBadge">
+      <mat-select formControlName="level" placeholder="Select knowledge level">
+        <mat-option *ngFor="let level of levels" [value]="level.name" [ngStyle]="{ 'background-color': level.color }">
+          {{ level.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary" type="submit">Add</button>
+      <button mat-stroked-button type="button">Cancel</button>
+    </div>
+  </form>
+</div>
