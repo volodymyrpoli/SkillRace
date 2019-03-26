@@ -18,7 +18,7 @@
 }
 
 .admin__navigation__content {
-  min-width: 800px;
+  min-width: 768px;
   display: flex;
   align-items: center;
 }
@@ -49,5 +49,17 @@
 }
 
 .admin__main__center {
-  min-width: 800px;
+  min-width: 768px;
+  background-color: white;
+  border-radius: 4px;
+  padding: 16px;
+  margin-top: 8px;
+}
+
+.background__image {
+  background: linear-gradient(90deg, #efd5ff 0%, #515ada 100%);
+  position: fixed;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
 }

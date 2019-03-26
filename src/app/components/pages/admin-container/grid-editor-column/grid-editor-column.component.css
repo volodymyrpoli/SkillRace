@@ -6,6 +6,8 @@
   display: flex;
   flex-direction: column;
   min-width: 250px;
+  overflow-y: auto;
+  max-height: 340px;
 }
 
 .column__header {
