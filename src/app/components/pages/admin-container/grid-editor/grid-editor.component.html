@@ -1,0 +1,9 @@
+<div class="grid__editor__wrapper">
+  <app-grid-editor-column
+    *ngFor="let category of getCategories()"
+    [category]="category"
+    [items]="getByCategory(category)"
+    [selectedItem]="getSelectedByCategory(category)"
+    (select)="selectItem($event)">
+  </app-grid-editor-column>
+</div>

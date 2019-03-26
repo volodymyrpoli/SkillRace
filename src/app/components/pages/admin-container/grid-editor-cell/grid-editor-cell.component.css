@@ -1,0 +1,9 @@
+p {
+  padding: 8px;
+  margin: 0;
+  border-bottom: 1px solid #515ada;
+}
+
+p.selected {
+  background-color: #dae0e7;
+}

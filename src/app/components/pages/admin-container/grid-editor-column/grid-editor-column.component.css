@@ -1,0 +1,21 @@
+:host {
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 4px;
+  height: 100%;
+}
+
+.grid__column__wrapper {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+
+.column__header {
+  background-color: #8e8e8e;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 16px 0;
+  border-radius: 4px 4px 0 0;
+}

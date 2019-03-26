@@ -26,6 +26,10 @@ import { AdminContainerComponent } from './components/pages/admin-container/admi
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/pages/user-container/dashboard/dashboard.component';
 import { GridComponent } from './components/pages/user-container/grid/grid.component';
+import { GridEditorComponent } from './components/pages/admin-container/grid-editor/grid-editor.component';
+import { GridEditorColumnComponent } from './components/pages/admin-container/grid-editor-column/grid-editor-column.component';
+import { GridEditorCellComponent } from './components/pages/admin-container/grid-editor-cell/grid-editor-cell.component';
+import { GridEditorBadgeComponent } from './components/pages/admin-container/grid-editor-badge/grid-editor-badge.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +46,10 @@ import { GridComponent } from './components/pages/user-container/grid/grid.compo
     AdminContainerComponent,
     DashboardComponent,
     GridComponent,
+    GridEditorComponent,
+    GridEditorColumnComponent,
+    GridEditorCellComponent,
+    GridEditorBadgeComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,12 @@
+<h2 class="column__header">
+  {{ category }}
+</h2>
+<div class="grid__column__wrapper">
+  <app-grid-editor-cell
+    *ngFor="let item of items"
+    [item]="item"
+    [selected]="item === selectedItem"
+    (select)="selectItem($event)">
+
+  </app-grid-editor-cell>
+</div>

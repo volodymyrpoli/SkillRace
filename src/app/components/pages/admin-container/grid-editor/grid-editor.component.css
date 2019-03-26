@@ -1,0 +1,6 @@
+.grid__editor__wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 400px;
+}
+
