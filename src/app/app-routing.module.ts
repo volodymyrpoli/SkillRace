@@ -7,7 +7,7 @@ import { DashboardComponent } from './components/pages/user-container/dashboard/
 import { GridComponent } from './components/pages/user-container/grid/grid.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'work', pathMatch: 'full' },
   {
     path: 'work',
     component: UserContainerComponent,
