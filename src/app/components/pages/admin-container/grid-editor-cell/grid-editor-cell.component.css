@@ -1,5 +1,5 @@
 .cell__wrapper {
-  padding: 0 8px;
+  padding: 0 16px;
   margin: 0;
   border-bottom: 1px solid #9bd9da;
   display: flex;
@@ -12,12 +12,16 @@
 }
 
 .cell__wrapper:hover .close__button {
-  visibility: visible;
+  display: block;
+}
+
+.cell__wrapper:hover .badge {
+  display: none;
 }
 
 .close__button {
   cursor: pointer;
-  visibility: hidden;
+  display: none;
 }
 
 .cell__value {

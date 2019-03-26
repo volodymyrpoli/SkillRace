@@ -10,7 +10,7 @@ import {
   MatDividerModule,
   MatFormFieldModule,
   MatIconModule,
-  MatInputModule
+  MatInputModule, MatListModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { KanbanGridComponent } from './components/shared/kanban-grid/kanban-grid.component';
@@ -66,6 +66,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MatIconModule,
     HttpClientModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,12 +1,11 @@
 <div class="cell__wrapper" [class.selected]="selected" (click)="click($event)">
-  <div class="cell__value">
-    <p contenteditable="true">
-      {{ item.name }}
-    </p>
-    <app-grid-editor-badge
-      *ngIf="withBadge"
-      [badgeData]="getDataForBadge(item)">
-    </app-grid-editor-badge>
-  </div>
+  <p contenteditable="true">
+    {{ item.name }}
+  </p>
+  <app-grid-editor-badge
+    class="badge"
+    *ngIf="withBadge"
+    [badgeData]="getDataForBadge(item)">
+  </app-grid-editor-badge>
   <mat-icon class="close__button">close</mat-icon>
 </div>
