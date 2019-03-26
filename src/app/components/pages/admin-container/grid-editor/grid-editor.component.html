@@ -1,16 +1,16 @@
 <div class="grid__editor__wrapper">
   <app-grid-editor-column
     category="Domains"
-    [items]="getItemsForDomain()"
-    [selectedItem]="selectedDomain"
+    [items]="getItemsForDomain() | async"
+    [selectedItem]="selectedDomain$ | async"
     (select)="selectDomain($event)"
     (createItem)="createDomain($event)">
   </app-grid-editor-column>
 
   <app-grid-editor-column
     category="Topics"
-    [items]="getItemsForTopic()"
-    [selectedItem]="selectedTopic"
+    [items]="getItemsForTopic() | async"
+    [selectedItem]="selectedTopic$ | async"
     (select)="selectTopic($event)"
     (createItem)="createTopic($event)">
   </app-grid-editor-column>
@@ -19,8 +19,8 @@
     category="Lessons"
     [withBadge]="true"
     [getDataForBadge]="getDataForBadge"
-    [items]="getItemsForSubtopic()"
-    [selectedItem]="selectedSubtopic"
+    [items]="getItemsForSubtopic() | async"
+    [selectedItem]="selectedSubtopic$ | async"
     (select)="selectSubtopic($event)"
     (createItem)="createSubtopic($event)">
   </app-grid-editor-column>

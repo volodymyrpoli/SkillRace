@@ -9,4 +9,8 @@ export class Level extends BaseEntity {
     this.order = order;
     this.color = color;
   }
+
+  toString(): string {
+    return `level[${this.name}]`;
+  }
 }

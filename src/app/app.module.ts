@@ -30,6 +30,7 @@ import { GridEditorComponent } from './components/pages/admin-container/grid-edi
 import { GridEditorColumnComponent } from './components/pages/admin-container/grid-editor-column/grid-editor-column.component';
 import { GridEditorCellComponent } from './components/pages/admin-container/grid-editor-cell/grid-editor-cell.component';
 import { GridEditorBadgeComponent } from './components/pages/admin-container/grid-editor-badge/grid-editor-badge.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { GridEditorBadgeComponent } from './components/pages/admin-container/gri
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

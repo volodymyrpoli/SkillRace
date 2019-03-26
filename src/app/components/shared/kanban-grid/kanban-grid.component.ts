@@ -1,5 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import { KanbanGrid } from '../../../entity/KanbanGrid';
+import { Component, Input, OnInit } from '@angular/core';
+import { Domain } from '../../../entity/Domain';
+import { Level } from '../../../entity/Level';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-kanban-grid',
@@ -8,9 +10,11 @@ import { KanbanGrid } from '../../../entity/KanbanGrid';
 })
 export class KanbanGridComponent implements OnInit {
 
-  @Input() grid: KanbanGrid;
+  @Input() domains$: Observable<Domain[]>;
+  @Input() levels$: Observable<Level[]>;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

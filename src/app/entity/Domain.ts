@@ -10,4 +10,8 @@ export class Domain extends BaseEntity {
     this.order = order;
     this.topics = [];
   }
+
+  toString(): string {
+    return 'domain[' + name + ']';
+  }
 }

@@ -4,6 +4,7 @@ import { Domain } from '../../../../entity/Domain';
 import { Topic } from '../../../../entity/Topic';
 import { Subtopic } from '../../../../entity/Subtopic';
 import { BaseEntity } from '../../../../entity/BaseEntity';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-grid-editor',
@@ -12,63 +13,81 @@ import { BaseEntity } from '../../../../entity/BaseEntity';
 })
 export class GridEditorComponent implements OnInit {
 
-  selectedDomain: Domain;
-  selectedTopic: Topic;
-  selectedSubtopic: Subtopic;
+  selectedDomain$: Subject<Domain> = new Subject();
+  selectedTopic$: Subject<Topic> = new Subject();
+  selectedSubtopic$: Subject<Subtopic> = new Subject();
+  domains$: Subject<Domain[]> = new Subject();
+  topics$: Subject<Topic[]> = new Subject();
+  subtopics$: Subject<Subtopic[]> = new Subject();
 
   constructor(private gridRepository: GridRepositoryService) { }
 
   ngOnInit() {
-    this.selectedDomain = this.gridRepository.getGrid().domains[0];
-    this.selectedTopic = this.selectedDomain.topics[0];
-    this.selectedSubtopic = this.selectedTopic.subtopics[0];
+    this.gridRepository.getDomains().subscribe(
+      domains => {
+        this.domains$.next(domains);
+        if (domains.length > 0) {
+          this.selectedDomain$.next(domains[0]);
+        }
+      }
+    );
+
+    this.selectedDomain$.subscribe(
+      domains => this.topics$.next(domains.topics)
+    );
+
+    this.selectedTopic$.subscribe(
+      topics => {
+        this.subtopics$.next(topics ? topics.subtopics : null);
+      }
+    );
   }
 
-  getItemsForDomain() {
-    return this.gridRepository.getGrid().domains;
+  getItemsForDomain(): Observable<Domain[]> {
+    return this.domains$;
   }
 
-  getItemsForTopic() {
-    return this.selectedDomain.topics;
+  getItemsForTopic(): Observable<Topic[]> {
+    return this.topics$;
   }
 
-  getItemsForSubtopic() {
-    if (this.selectedTopic) {
-      return this.selectedTopic.subtopics;
-    }
-    return null;
+  getItemsForSubtopic(): Observable<Subtopic[]> {
+    return this.subtopics$;
   }
 
   selectDomain(value: BaseEntity) {
-    this.selectedDomain = value as Domain;
-    this.selectedTopic = null;
-    this.selectedSubtopic = null;
+    this.selectedDomain$.next(value as Domain);
+    this.selectedTopic$.next(null);
+    this.selectedSubtopic$.next(null);
   }
 
   selectTopic(value: BaseEntity) {
-    this.selectedTopic = value as Topic;
-    this.selectedSubtopic = null;
+    this.selectedTopic$.next(value as Topic);
+    this.selectedSubtopic$.next(null);
   }
 
   selectSubtopic(value: BaseEntity) {
-    this.selectedSubtopic = value as Subtopic;
+    this.selectedSubtopic$.next(value as Subtopic);
   }
 
   createDomain(name: string) {
+    alert('Need implementation');
     const domain = new Domain(null, name, 0);
-    this.getItemsForDomain().push(domain);
+    // this.getItemsForDomain().push(domain);
     this.selectDomain(domain);
   }
 
   createTopic(name: string) {
+    alert('Need implementation');
     const topic = new Topic(null, name);
-    this.getItemsForTopic().push(topic);
+    // this.getItemsForTopic().push(topic);
     this.selectTopic(topic);
   }
 
   createSubtopic(name: string) {
+    alert('Need implementation');
     const lesson = new Subtopic(null, name);
-    this.getItemsForSubtopic().push(lesson);
+    // this.getItemsForSubtopic().push(lesson);
     this.selectSubtopic(lesson);
   }
 
