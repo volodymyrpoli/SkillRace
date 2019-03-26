@@ -11,6 +11,9 @@ export class GridEditorColumnComponent implements OnInit {
   @Input() category: string;
   @Input() items: BaseEntity[];
   @Input() selectedItem: BaseEntity;
+  @Input() withBadge = false;
+  @Input() getDataForBadge: (item: BaseEntity) => { color: string, name: string};
+
   @Output() select = new EventEmitter<BaseEntity>();
   @Output() createItem = new EventEmitter<string>();
 

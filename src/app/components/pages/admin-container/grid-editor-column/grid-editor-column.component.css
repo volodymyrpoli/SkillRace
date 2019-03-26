@@ -1,20 +1,16 @@
 :host {
-  /*border: 1px solid black;*/
-  /*border-radius: 4px;*/
-  /*margin: 4px;*/
   height: 100%;
 }
 
 .grid__column__wrapper {
   display: flex;
   flex-direction: column;
-  min-width: 200px;
+  min-width: 250px;
 }
 
 .column__header {
   background-color: #cdcdcd;
   padding: 16px 8px;
-  /*border-radius: 4px 4px 0 0;*/
   display: flex;
   justify-content: space-between;
 }

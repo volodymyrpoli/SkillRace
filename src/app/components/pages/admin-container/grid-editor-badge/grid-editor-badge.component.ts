@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Level } from '../../../../entity/Level';
 
 @Component({
   selector: 'app-grid-editor-badge',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GridEditorBadgeComponent implements OnInit {
 
+  @Input() level: Level;
+  @Input() badgeData: { color: string, name: string};
   constructor() { }
 
   ngOnInit() {

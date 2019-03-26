@@ -9,7 +9,9 @@
     *ngFor="let item of items"
     [item]="item"
     [selected]="item === selectedItem"
-    (select)="selectItem($event)">
+    (select)="selectItem($event)"
+    [withBadge]="withBadge"
+    [getDataForBadge]="getDataForBadge">
 
   </app-grid-editor-cell>
 </div>

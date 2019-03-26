@@ -71,4 +71,12 @@ export class GridEditorComponent implements OnInit {
     this.getItemsForLesson().push(lesson);
     this.selectLesson(lesson);
   }
+
+  getDataForBadge(item: BaseEntity): { color: string, name: string} {
+    const lesson = (item as Lesson);
+    if (lesson.level) {
+      return { color: lesson.level.color, name: lesson.level.name };
+    }
+    return { color: 'transparent', name: '' };
+  }
 }

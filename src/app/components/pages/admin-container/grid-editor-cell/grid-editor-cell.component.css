@@ -19,3 +19,9 @@
   cursor: pointer;
   visibility: hidden;
 }
+
+.cell__value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

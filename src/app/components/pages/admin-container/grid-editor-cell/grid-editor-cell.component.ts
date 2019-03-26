@@ -10,6 +10,8 @@ export class GridEditorCellComponent implements OnInit {
 
   @Input() item: BaseEntity;
   @Input() selected: boolean;
+  @Input() withBadge = false;
+  @Input() getDataForBadge: (item: BaseEntity) => { color: string, name: string};
   @Output() select = new EventEmitter<BaseEntity>();
 
   constructor() { }
