@@ -19,9 +19,9 @@
     category="Lessons"
     [withBadge]="true"
     [getDataForBadge]="getDataForBadge"
-    [items]="getItemsForLesson()"
-    [selectedItem]="selectedLesson"
-    (select)="selectLesson($event)"
-    (createItem)="createLesson($event)">
+    [items]="getItemsForSubtopic()"
+    [selectedItem]="selectedSubtopic"
+    (select)="selectSubtopic($event)"
+    (createItem)="createSubtopic($event)">
   </app-grid-editor-column>
 </div>

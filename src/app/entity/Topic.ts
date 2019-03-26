@@ -1,6 +1,6 @@
 import { BaseEntity } from './BaseEntity';
-import { Lesson } from './Lesson';
+import { Subtopic } from './Subtopic';
 
 export class Topic extends BaseEntity {
-  lessons: Lesson[] = [];
+  subtopics: Subtopic[] = [];
 }

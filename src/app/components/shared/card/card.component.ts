@@ -15,8 +15,8 @@ export class CardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    if (this.topic.lessons[0]) {
-      this.cardColor = this.topic.lessons[0].level.color;
+    if (this.topic.subtopics[0]) {
+      this.cardColor = this.topic.subtopics[0].level.color;
     }
   }
 

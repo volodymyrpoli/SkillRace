@@ -29,7 +29,7 @@ export class GridRepositoryService {
         {
           id: GridRepositoryService.getId(),
           name: 'CSS',
-          lessons: [
+          subtopics: [
             {
               id: GridRepositoryService.getId(),
               name: 'Animation',
@@ -41,7 +41,7 @@ export class GridRepositoryService {
         {
           id: GridRepositoryService.getId(),
           name: 'HTML',
-          lessons: [
+          subtopics: [
             {
               id: GridRepositoryService.getId(),
               name: 'DOM',
@@ -53,7 +53,7 @@ export class GridRepositoryService {
         {
           id: GridRepositoryService.getId(),
           name: 'JavaScript',
-          lessons: [
+          subtopics: [
             {
               id: GridRepositoryService.getId(),
               name: 'Async',
@@ -72,7 +72,7 @@ export class GridRepositoryService {
         {
           id: GridRepositoryService.getId(),
           name: 'Java',
-          lessons: [
+          subtopics: [
             {
               id: GridRepositoryService.getId(),
               name: 'For loop',
@@ -90,7 +90,7 @@ export class GridRepositoryService {
         {
           id: GridRepositoryService.getId(),
           name: 'Spring',
-          lessons: [
+          subtopics: [
             {
               id: GridRepositoryService.getId(),
               name: 'Dependency injection',

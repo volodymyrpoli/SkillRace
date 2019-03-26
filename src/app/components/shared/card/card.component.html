@@ -1,13 +1,13 @@
 <mat-card
   class="main__card__wrapper"
   draggable="true"
-  [ngStyle]="topic.lessons.length > 0 ? { 'background-color': topic.lessons[0].level.color } : { }">
+  [ngStyle]="topic.subtopics.length > 0 ? { 'background-color': topic.subtopics[0].level.color } : { }">
   <mat-card-header>
     <mat-card-title>{{ topic.name }}</mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
-    <div *ngFor="let lesson of topic.lessons | sortBy:'checked'">
+    <div *ngFor="let lesson of topic.subtopics | sortBy:'checked'">
       <label>
         <input
           class="lesson__checkbox"

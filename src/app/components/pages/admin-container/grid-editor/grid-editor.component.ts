@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GridRepositoryService } from '../../../../service/grid-repository.service';
 import { Domain } from '../../../../entity/Domain';
 import { Topic } from '../../../../entity/Topic';
-import { Lesson } from '../../../../entity/Lesson';
+import { Subtopic } from '../../../../entity/Subtopic';
 import { BaseEntity } from '../../../../entity/BaseEntity';
 
 @Component({
@@ -14,14 +14,14 @@ export class GridEditorComponent implements OnInit {
 
   selectedDomain: Domain;
   selectedTopic: Topic;
-  selectedLesson: Lesson;
+  selectedSubtopic: Subtopic;
 
   constructor(private gridRepository: GridRepositoryService) { }
 
   ngOnInit() {
     this.selectedDomain = this.gridRepository.getGrid().domains[0];
     this.selectedTopic = this.selectedDomain.topics[0];
-    this.selectedLesson = this.selectedTopic.lessons[0];
+    this.selectedSubtopic = this.selectedTopic.subtopics[0];
   }
 
   getItemsForDomain() {
@@ -32,9 +32,9 @@ export class GridEditorComponent implements OnInit {
     return this.selectedDomain.topics;
   }
 
-  getItemsForLesson() {
+  getItemsForSubtopic() {
     if (this.selectedTopic) {
-      return this.selectedTopic.lessons;
+      return this.selectedTopic.subtopics;
     }
     return null;
   }
@@ -42,16 +42,16 @@ export class GridEditorComponent implements OnInit {
   selectDomain(value: BaseEntity) {
     this.selectedDomain = value as Domain;
     this.selectedTopic = null;
-    this.selectedLesson = null;
+    this.selectedSubtopic = null;
   }
 
   selectTopic(value: BaseEntity) {
     this.selectedTopic = value as Topic;
-    this.selectedLesson = null;
+    this.selectedSubtopic = null;
   }
 
-  selectLesson(value: BaseEntity) {
-    this.selectedLesson = value as Lesson;
+  selectSubtopic(value: BaseEntity) {
+    this.selectedSubtopic = value as Subtopic;
   }
 
   createDomain(name: string) {
@@ -66,14 +66,14 @@ export class GridEditorComponent implements OnInit {
     this.selectTopic(topic);
   }
 
-  createLesson(name: string) {
-    const lesson = new Lesson(null, name);
-    this.getItemsForLesson().push(lesson);
-    this.selectLesson(lesson);
+  createSubtopic(name: string) {
+    const lesson = new Subtopic(null, name);
+    this.getItemsForSubtopic().push(lesson);
+    this.selectSubtopic(lesson);
   }
 
   getDataForBadge(item: BaseEntity): { color: string, name: string} {
-    const lesson = (item as Lesson);
+    const lesson = (item as Subtopic);
     if (lesson.level) {
       return { color: lesson.level.color, name: lesson.level.name };
     }
