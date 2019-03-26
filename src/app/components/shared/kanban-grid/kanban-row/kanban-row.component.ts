@@ -21,12 +21,12 @@ export class KanbanRowComponent implements OnInit {
   getTopicsWithLessonsFor(level: Level): Topic[] {
     let topics = this.domain.topics.slice();
     topics = topics
-      .filter(topic => topic.subtopics.some(lesson => lesson.level.id === level.id))
+      .filter(topic => topic.subtopics.some(subtopic => subtopic.level.id === level.id))
       .map(topic => {
         const t = new Topic();
         t.id = topic.id;
         t.name = topic.name;
-        t.subtopics = topic.subtopics.filter(lessons => lessons.level.id === level.id);
+        t.subtopics = topic.subtopics.filter(subtopic => subtopic.level.id === level.id);
         return t;
       });
     return topics;

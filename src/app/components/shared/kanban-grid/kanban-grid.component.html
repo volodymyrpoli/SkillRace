@@ -13,7 +13,7 @@
     <app-kanban-row
       *ngFor="let domain of (domains$ | async) | sortBy:'order'"
       [domain]="domain"
-      [levels]="levels$">
+      [levels]="levels$ | async">
     </app-kanban-row>
     </tbody>
   </table>

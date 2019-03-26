@@ -18,10 +18,12 @@ export class GridComponent implements OnInit {
 
   ngOnInit(): void {
     this.gridRepository.getDomains().subscribe(
-      domains => this.domains$.next(domains)
-    );
-    this.gridRepository.getLevels().subscribe(
-      levels => this.levels$.next(levels)
+      domains => {
+        this.domains$.next(domains);
+        this.gridRepository.getLevels().subscribe(
+          levels => this.levels$.next(levels)
+        );
+      }
     );
   }
 }
