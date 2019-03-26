@@ -8,5 +8,6 @@ export class Domain extends BaseEntity {
   constructor(id: number, name: string, order: number) {
     super(id, name);
     this.order = order;
+    this.topics = [];
   }
 }

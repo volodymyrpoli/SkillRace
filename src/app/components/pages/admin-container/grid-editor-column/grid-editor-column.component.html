@@ -1,6 +1,9 @@
-<h2 class="column__header">
-  {{ category }}
-</h2>
+<div class="column__header">
+  <h2>
+    {{ category }}
+  </h2>
+  <mat-icon (click)="createItemClick()">add_box</mat-icon>
+</div>
 <div class="grid__column__wrapper">
   <app-grid-editor-cell
     *ngFor="let item of items"

@@ -1,9 +1,21 @@
-p {
-  padding: 8px;
+.cell__wrapper {
+  padding: 0 8px;
   margin: 0;
-  border-bottom: 1px solid #515ada;
+  border-bottom: 1px solid #9bd9da;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-p.selected {
+.cell__wrapper.selected {
   background-color: #dae0e7;
+}
+
+.cell__wrapper:hover .close__button {
+  visibility: visible;
+}
+
+.close__button {
+  cursor: pointer;
+  visibility: hidden;
 }

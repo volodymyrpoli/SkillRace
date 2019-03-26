@@ -1,3 +1,6 @@
-<p [class.selected]="selected" (click)="click($event)">
-  {{ item.name }}
-</p>
+<div class="cell__wrapper" [class.selected]="selected" (click)="click($event)">
+  <p contenteditable="true">
+    {{ item.name }}
+  </p>
+  <mat-icon class="close__button">close</mat-icon>
+</div>

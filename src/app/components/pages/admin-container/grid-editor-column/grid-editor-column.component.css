@@ -1,7 +1,7 @@
 :host {
-  border: 1px solid black;
-  border-radius: 4px;
-  margin: 4px;
+  /*border: 1px solid black;*/
+  /*border-radius: 4px;*/
+  /*margin: 4px;*/
   height: 100%;
 }
 
@@ -12,10 +12,29 @@
 }
 
 .column__header {
-  background-color: #8e8e8e;
-  width: 100%;
-  text-align: center;
+  background-color: #cdcdcd;
+  padding: 16px 8px;
+  /*border-radius: 4px 4px 0 0;*/
+  display: flex;
+  justify-content: space-between;
+}
+
+.column__header h2 {
   margin: 0;
-  padding: 16px 0;
-  border-radius: 4px 4px 0 0;
+}
+
+.column__header mat-icon {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.column__header mat-icon:hover {
+  color: #4e4e4e;
+}
+
+.column__header mat-icon:active {
+  color: white;
 }

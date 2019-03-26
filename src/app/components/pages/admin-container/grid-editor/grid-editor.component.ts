@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GridRepositoryService } from '../../../../service/grid-repository.service';
-import { KanbanGrid } from '../../../../entity/KanbanGrid';
+import { Domain } from '../../../../entity/Domain';
+import { Topic } from '../../../../entity/Topic';
+import { Lesson } from '../../../../entity/Lesson';
 import { BaseEntity } from '../../../../entity/BaseEntity';
 
 @Component({
@@ -10,50 +12,63 @@ import { BaseEntity } from '../../../../entity/BaseEntity';
 })
 export class GridEditorComponent implements OnInit {
 
-  dataController: any;
+  selectedDomain: Domain;
+  selectedTopic: Topic;
+  selectedLesson: Lesson;
 
   constructor(private gridRepository: GridRepositoryService) { }
 
   ngOnInit() {
-    const lesson = {
-      selected: this.getGrid().domains[0].topics[0].lessons[0],
-      all: this.getGrid().domains[0].topics[0].lessons,
-      next: null
-    };
-    const topic = {
-      selected: this.getGrid().domains[0].topics[0],
-      all: this.getGrid().domains[0].topics,
-      next: lesson
-    };
-    const domain = {
-      selected: this.getGrid().domains[0],
-      all: this.getGrid().domains,
-      next: topic
-    };
-    this.dataController = { domain, topic, lesson };
+    this.selectedDomain = this.gridRepository.getGrid().domains[0];
+    this.selectedTopic = this.selectedDomain.topics[0];
+    this.selectedLesson = this.selectedTopic.lessons[0];
   }
 
-  getCategories(): string[] {
-    return Object.keys(this.dataController);
+  getItemsForDomain() {
+    return this.gridRepository.getGrid().domains;
   }
 
-  getGrid(): KanbanGrid {
-    return this.gridRepository.getGrid();
+  getItemsForTopic() {
+    return this.selectedDomain.topics;
   }
 
-  getByCategory(category: string): BaseEntity[] {
-    return this.dataController[category].all;
+  getItemsForLesson() {
+    if (this.selectedTopic) {
+      return this.selectedTopic.lessons;
+    }
+    return null;
   }
 
-  getSelectedByCategory(category: string): BaseEntity {
-    return this.dataController[category].selected;
+  selectDomain(value: BaseEntity) {
+    this.selectedDomain = value as Domain;
+    this.selectedTopic = null;
+    this.selectedLesson = null;
   }
 
-  setSelectedByCategory(category: string, item: BaseEntity) {
-    this.dataController[category].selected = item;
+  selectTopic(value: BaseEntity) {
+    this.selectedTopic = value as Topic;
+    this.selectedLesson = null;
   }
 
-  selectItem(item: {item: BaseEntity, category: string}) {
-    this.setSelectedByCategory(item.category, item.item);
+  selectLesson(value: BaseEntity) {
+    this.selectedLesson = value as Lesson;
+  }
+
+  createDomain(name: string) {
+    const domain = new Domain(null, name, 0);
+    this.getItemsForDomain().push(domain);
+    this.selectDomain(domain);
+  }
+
+  createTopic(name: string) {
+    const topic = new Topic(null, name);
+    this.getItemsForTopic().push(topic);
+    this.selectTopic(topic);
+  }
+
+  createLesson(name: string) {
+    const lesson = new Lesson(null, name);
+    this.getItemsForLesson().push(lesson);
+    this.selectLesson(lesson);
   }
 }

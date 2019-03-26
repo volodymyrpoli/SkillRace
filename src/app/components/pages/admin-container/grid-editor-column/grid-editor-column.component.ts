@@ -11,7 +11,8 @@ export class GridEditorColumnComponent implements OnInit {
   @Input() category: string;
   @Input() items: BaseEntity[];
   @Input() selectedItem: BaseEntity;
-  @Output() select = new EventEmitter<{item: BaseEntity, category: string}>();
+  @Output() select = new EventEmitter<BaseEntity>();
+  @Output() createItem = new EventEmitter<string>();
 
   constructor() { }
 
@@ -19,6 +20,11 @@ export class GridEditorColumnComponent implements OnInit {
   }
 
   selectItem(baseEntity: BaseEntity) {
-    this.select.emit({ item: baseEntity, category: this.category });
+    this.select.emit(baseEntity);
+  }
+
+  createItemClick() {
+    const name = prompt('Add title');
+    this.createItem.emit(name);
   }
 }

@@ -1,9 +1,26 @@
 <div class="grid__editor__wrapper">
   <app-grid-editor-column
-    *ngFor="let category of getCategories()"
-    [category]="category"
-    [items]="getByCategory(category)"
-    [selectedItem]="getSelectedByCategory(category)"
-    (select)="selectItem($event)">
+    category="Domains"
+    [items]="getItemsForDomain()"
+    [selectedItem]="selectedDomain"
+    (select)="selectDomain($event)"
+    (createItem)="createDomain($event)">
   </app-grid-editor-column>
+
+  <app-grid-editor-column
+    category="Topics"
+    [items]="getItemsForTopic()"
+    [selectedItem]="selectedTopic"
+    (select)="selectTopic($event)"
+    (createItem)="createTopic($event)">
+  </app-grid-editor-column>
+
+  <app-grid-editor-column
+    category="Lessons"
+    [items]="getItemsForLesson()"
+    [selectedItem]="selectedLesson"
+    (select)="selectLesson($event)"
+    (createItem)="createLesson($event)">
+  </app-grid-editor-column>
+
 </div>
