@@ -1,11 +1,11 @@
 <nav class="admin__navigation">
   <div class="admin__navigation__content">
-    <a href="#" class="logo">Skill race</a>
-    <a href="#">Dashboard</a>
-    <a href="#">Board editor</a>
-    <a href="#">Users</a>
-    <a href="#" class="push__right">Settings</a>
-    <a href="#">Logout</a>
+    <a routerLink="dashboard" class="logo">Skill race</a>
+    <a routerLink="dashboard">Dashboard</a>
+    <a routerLink="editor">Board editor</a>
+    <a routerLink="users">Users</a>
+    <a routerLink="settings" class="push__right">Settings</a>
+    <a>Logout</a>
   </div>
 </nav>
 <div class="navigation__padding"><br></div>
@@ -13,8 +13,7 @@
 
 <div class="admin__main__wrapper">
   <main class="admin__main__center">
-    <h2>Content editor</h2>
-    <app-grid-editor></app-grid-editor>
+    <router-outlet></router-outlet>
   </main>
 </div>
 

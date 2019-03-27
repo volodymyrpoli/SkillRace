@@ -26,12 +26,16 @@ import { AdminContainerComponent } from './components/pages/admin-container/admi
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './components/pages/user-container/dashboard/dashboard.component';
 import { GridComponent } from './components/pages/user-container/grid/grid.component';
-import { GridEditorComponent } from './components/pages/admin-container/grid-editor/grid-editor.component';
-import { GridEditorColumnComponent } from './components/pages/admin-container/grid-editor/grid-editor-column/grid-editor-column.component';
-import { GridEditorCellComponent } from './components/pages/admin-container/grid-editor/grid-editor-cell/grid-editor-cell.component';
-import { GridEditorBadgeComponent } from './components/pages/admin-container/grid-editor/grid-editor-badge/grid-editor-badge.component';
+import { GridEditorComponent } from './components/pages/admin-container/board-editor/grid-editor/grid-editor.component';
+import { GridEditorColumnComponent } from './components/pages/admin-container/board-editor/grid-editor/grid-editor-column/grid-editor-column.component';
+import { GridEditorCellComponent } from './components/pages/admin-container/board-editor/grid-editor/grid-editor-cell/grid-editor-cell.component';
+import { GridEditorBadgeComponent } from './components/pages/admin-container/board-editor/grid-editor/grid-editor-badge/grid-editor-badge.component';
 import { HttpClientModule } from '@angular/common/http';
-import { GridEditorFormComponent } from './components/pages/admin-container/grid-editor/grid-editor-form/grid-editor-form.component';
+import { GridEditorFormComponent } from './components/pages/admin-container/board-editor/grid-editor/grid-editor-form/grid-editor-form.component';
+import { BoardEditorComponent } from './components/pages/admin-container/board-editor/board-editor.component';
+import { AdminDashboardComponent } from './components/pages/admin-container/admin-dashboard/admin-dashboard.component';
+import { UserResultsComponent } from './components/pages/admin-container/user-results/user-results.component';
+import { SettingsComponent } from './components/pages/admin-container/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +57,10 @@ import { GridEditorFormComponent } from './components/pages/admin-container/grid
     GridEditorCellComponent,
     GridEditorBadgeComponent,
     GridEditorFormComponent,
+    BoardEditorComponent,
+    AdminDashboardComponent,
+    UserResultsComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

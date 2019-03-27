@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BaseEntity } from '../../../../../entity/BaseEntity';
+import { BaseEntity } from '../../../../../../entity/BaseEntity';
 
 @Component({
   selector: 'app-grid-editor-cell',
@@ -13,6 +13,7 @@ export class GridEditorCellComponent implements OnInit {
   @Input() withBadge = false;
   @Input() getDataForBadge: (item: BaseEntity) => { color: string, name: string};
   @Output() select = new EventEmitter<BaseEntity>();
+  @Output() remove = new EventEmitter<BaseEntity>();
 
   constructor() { }
 
@@ -21,5 +22,9 @@ export class GridEditorCellComponent implements OnInit {
 
   click(event: Event): void {
     this.select.emit(this.item);
+  }
+
+  deleteClick() {
+    this.remove.emit(this.item);
   }
 }

@@ -1,28 +1,31 @@
 <div class="grid__editor__wrapper">
   <app-grid-editor-column
-    category="Domains"
+    (createItem)="createDomain($event)"
+    (select)="selectDomain($event)"
+    (removeItem)="deleteDomain($event)"
     [items]="getItemsForDomain() | async"
     [selectedItem]="selectedDomain$ | async"
-    (select)="selectDomain($event)"
-    (createItem)="createDomain($event)">
+    category="Domains">
   </app-grid-editor-column>
 
   <app-grid-editor-column
-    category="Topics"
+    (createItem)="createTopic($event)"
+    (select)="selectTopic($event)"
+    (removeItem)="deleteTopic($event)"
     [items]="getItemsForTopic() | async"
     [selectedItem]="selectedTopic$ | async"
-    (select)="selectTopic($event)"
-    (createItem)="createTopic($event)">
+    category="Topics">
   </app-grid-editor-column>
 
   <app-grid-editor-column
-    category="Subtopics"
-    [withBadge]="true"
-    [levels]="levels$ | async"
+    (createItem)="createSubtopic($event)"
+    (select)="selectSubtopic($event)"
+    (removeItem)="deleteSubtopic($event)"
     [getDataForBadge]="getDataForBadge"
     [items]="getItemsForSubtopic() | async"
+    [levels]="levels$ | async"
     [selectedItem]="selectedSubtopic$ | async"
-    (select)="selectSubtopic($event)"
-    (createItem)="createSubtopic($event)">
+    [withBadge]="true"
+    category="Subtopics">
   </app-grid-editor-column>
 </div>

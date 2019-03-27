@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { GridRepositoryService } from '../../../../service/grid-repository.service';
-import { Domain } from '../../../../entity/Domain';
-import { Topic } from '../../../../entity/Topic';
-import { Subtopic } from '../../../../entity/Subtopic';
-import { BaseEntity } from '../../../../entity/BaseEntity';
+import { GridRepositoryService } from '../../../../../service/grid-repository.service';
+import { Domain } from '../../../../../entity/Domain';
+import { Topic } from '../../../../../entity/Topic';
+import { Subtopic } from '../../../../../entity/Subtopic';
+import { BaseEntity } from '../../../../../entity/BaseEntity';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { Level } from '../../../../entity/Level';
+import { Level } from '../../../../../entity/Level';
 
 @Component({
   selector: 'app-grid-editor',
@@ -106,5 +106,17 @@ export class GridEditorComponent implements OnInit {
       return { color: lesson.level.color, name: lesson.level.name };
     }
     return { color: 'transparent', name: '' };
+  }
+
+  deleteDomain(domain: BaseEntity) {
+    this.gridRepository.deleteElement(domain.id, 'domains');
+  }
+
+  deleteTopic(topic: BaseEntity) {
+    this.gridRepository.deleteElement(topic.id, 'topics');
+  }
+
+  deleteSubtopic(subtopic: BaseEntity) {
+    this.gridRepository.deleteElement(subtopic.id, 'subtopics');
   }
 }

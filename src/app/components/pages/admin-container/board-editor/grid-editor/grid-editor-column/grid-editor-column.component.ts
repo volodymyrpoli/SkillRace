@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BaseEntity } from '../../../../../entity/BaseEntity';
-import { Level } from '../../../../../entity/Level';
+import { BaseEntity } from '../../../../../../entity/BaseEntity';
+import { Level } from '../../../../../../entity/Level';
 
 @Component({
   selector: 'app-grid-editor-column',
@@ -19,6 +19,7 @@ export class GridEditorColumnComponent implements OnInit {
 
   @Output() select = new EventEmitter<BaseEntity>();
   @Output() createItem = new EventEmitter<Event>();
+  @Output() removeItem = new EventEmitter<BaseEntity>();
 
   constructor() { }
 
@@ -35,5 +36,9 @@ export class GridEditorColumnComponent implements OnInit {
 
   createElement(event: any) {
     this.createItem.emit(event);
+  }
+
+  deleteItem(baseEntity: BaseEntity) {
+    this.removeItem.emit(baseEntity);
   }
 }

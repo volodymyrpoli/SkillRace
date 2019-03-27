@@ -36,4 +36,8 @@ export class GridRepositoryService {
     return this.httpClient.post<Subtopic>(`${this.BASE_URL}/subtopics`, { name, levelId, topicId });
   }
 
+  deleteElement(id: number, entityPath: string) {
+    this.httpClient.delete(`${this.BASE_URL}/${entityPath}/${id}`).subscribe();
+  }
+
 }

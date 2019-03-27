@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Level } from '../../../../../entity/Level';
+import { Level } from '../../../../../../entity/Level';
 import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
 
 @Component({

@@ -5,6 +5,10 @@ import { UserContainerComponent } from './components/pages/user-container/user-c
 import { AdminContainerComponent } from './components/pages/admin-container/admin-container.component';
 import { DashboardComponent } from './components/pages/user-container/dashboard/dashboard.component';
 import { GridComponent } from './components/pages/user-container/grid/grid.component';
+import { BoardEditorComponent } from './components/pages/admin-container/board-editor/board-editor.component';
+import { AdminDashboardComponent } from './components/pages/admin-container/admin-dashboard/admin-dashboard.component';
+import { SettingsComponent } from './components/pages/admin-container/settings/settings.component';
+import { UserResultsComponent } from './components/pages/admin-container/user-results/user-results.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'work', pathMatch: 'full' },
@@ -20,7 +24,13 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminContainerComponent,
-    children: []
+    children: [
+      { path: '', redirectTo: 'editor', pathMatch: 'full' },
+      { path: 'editor', component: BoardEditorComponent },
+      { path: 'dashboard', component: AdminDashboardComponent },
+      { path: 'settings', component: SettingsComponent },
+      { path: 'users', component: UserResultsComponent },
+    ]
   },
   { path: 'login', component: LoginComponent }
 ];
