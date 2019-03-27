@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../service/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Utils } from '../../../utils/Utils';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,12 @@ export class LoginComponent implements OnInit {
               private formBuilder: FormBuilder,
               private authService: AuthService) { }
 
+  static parseJwt(token: string) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    return JSON.parse(window.atob(base64));
+  }
+
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
         login: ['', Validators.required],
@@ -33,9 +40,13 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.formGroup.valid) {
       this.authService.login(this.formGroup.value.login, this.formGroup.value.password).subscribe({
-        next: (currentUser: {token: string}) => {
+        next: (value: {token: string}) => {
           this.formGroup.reset();
-          localStorage.setItem('currentUser', JSON.stringify(currentUser));
+          const user = {
+            token: value.token,
+            detail: Utils.parseJwt(value.token)
+          };
+          localStorage.setItem('currentUser', JSON.stringify(user));
           if (this.returnUrl) {
             this.router.navigate([this.returnUrl]).catch(alert);
           } else {

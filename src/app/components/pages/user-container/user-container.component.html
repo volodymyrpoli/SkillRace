@@ -3,6 +3,9 @@
     <a href="#">
       <mat-icon>home</mat-icon>
     </a>
+    <a routerLink="/admin" *ngIf="isCurrentUserAdmin()">
+      Admin panel
+    </a>
   </div>
 
   <div class="navigation__center">
@@ -10,7 +13,7 @@
   </div>
 
   <div class="navigation__right">
-    <a><mat-icon>exit_to_app</mat-icon></a>
+    <a (click)="logout()"><mat-icon>exit_to_app</mat-icon></a>
   </div>
 </nav>
 <div class="navigation__padding"></div>
