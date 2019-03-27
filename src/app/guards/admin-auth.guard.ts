@@ -12,10 +12,14 @@ export class AdminAuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (localStorage.getItem('currentUser')) {
-      return Utils.isCurrentUserAdmin();
+      const isAdmin = Utils.isCurrentUserAdmin();
+      if (!isAdmin) {
+        this.router.navigate(['/work']).catch(console.log);
+      }
+      return isAdmin;
     }
 
-    this.router.navigate(['/work'], { queryParams: { returnUrl: state.url }}).catch(console.log);
+    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }}).catch(console.log);
     return false;
   }
 
