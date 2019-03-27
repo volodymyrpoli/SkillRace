@@ -5,13 +5,14 @@ import { Domain } from '../entity/Domain';
 import { Level } from '../entity/Level';
 import { Topic } from '../entity/Topic';
 import { Subtopic } from '../entity/Subtopic';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GridRepositoryService {
 
-  private BASE_URL = 'http://localhost:8080';
+  private BASE_URL = environment.BASE_URL;
 
   constructor(private httpClient: HttpClient) {
   }

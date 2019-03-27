@@ -12,4 +12,7 @@ export class AdminContainerComponent implements OnInit {
   ngOnInit() {
   }
 
+  logout() {
+    localStorage.removeItem('currentUser');
+  }
 }

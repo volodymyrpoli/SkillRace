@@ -9,12 +9,14 @@ import { BoardEditorComponent } from './components/pages/admin-container/board-e
 import { AdminDashboardComponent } from './components/pages/admin-container/admin-dashboard/admin-dashboard.component';
 import { SettingsComponent } from './components/pages/admin-container/settings/settings.component';
 import { UserResultsComponent } from './components/pages/admin-container/user-results/user-results.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'work', pathMatch: 'full' },
   {
     path: 'work',
     component: UserContainerComponent,
+    canActivate: [ AuthGuard ],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
@@ -24,6 +26,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminContainerComponent,
+    canActivate: [ AuthGuard ],
     children: [
       { path: '', redirectTo: 'editor', pathMatch: 'full' },
       { path: 'editor', component: BoardEditorComponent },
