@@ -20,6 +20,7 @@ export class GridEditorColumnComponent implements OnInit {
   @Output() select = new EventEmitter<BaseEntity>();
   @Output() createItem = new EventEmitter<Event>();
   @Output() removeItem = new EventEmitter<BaseEntity>();
+  @Output() editElement = new EventEmitter<BaseEntity>();
 
   constructor() { }
 
@@ -40,5 +41,9 @@ export class GridEditorColumnComponent implements OnInit {
 
   deleteItem(baseEntity: BaseEntity) {
     this.removeItem.emit(baseEntity);
+  }
+
+  editItem(baseEntity: BaseEntity) {
+    this.editElement.emit(baseEntity);
   }
 }

@@ -6,6 +6,8 @@ import { Subtopic } from '../../../../../entity/Subtopic';
 import { BaseEntity } from '../../../../../entity/BaseEntity';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Level } from '../../../../../entity/Level';
+import { MatDialog } from '@angular/material';
+import { EditCellComponent } from '../../edit-cell/edit-cell.component';
 
 @Component({
   selector: 'app-grid-editor',
@@ -22,7 +24,8 @@ export class GridEditorComponent implements OnInit {
   subtopics$: Subject<Subtopic[]> = new Subject();
   levels$: Subject<Level[]> = new Subject();
 
-  constructor(private gridRepository: GridRepositoryService) { }
+  constructor(private gridRepository: GridRepositoryService,
+              private dialog: MatDialog) { }
 
   ngOnInit() {
     this.gridRepository.getDomains().subscribe(
@@ -118,5 +121,12 @@ export class GridEditorComponent implements OnInit {
 
   deleteSubtopic(subtopic: BaseEntity) {
     this.gridRepository.deleteElement(subtopic.id, 'subtopics');
+  }
+
+  editSubtopic(baseEntity: BaseEntity) {
+    this.dialog.open(EditCellComponent, {
+      width: '500px',
+      data: baseEntity
+    });
   }
 }

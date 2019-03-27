@@ -10,11 +10,24 @@
   border-bottom: 1px solid darkgrey;
 }
 
+a {
+  cursor: pointer;
+}
+
 .navigation__left,
 .navigation__center,
 .navigation__right {
   display: flex;
   align-items: center;
+  height: 100%;
+}
+
+.navigation__left a,
+.navigation__center a,
+.navigation__right a {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
 .user__navigation a {

@@ -19,9 +19,9 @@ const routes: Routes = [
     component: UserContainerComponent,
     canActivate: [ AuthGuard ],
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: '', redirectTo: 'grid', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'grid/:id', component: GridComponent },
+      { path: 'grid', component: GridComponent },
     ]
   },
   {

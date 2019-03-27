@@ -14,6 +14,7 @@ export class GridEditorCellComponent implements OnInit {
   @Input() getDataForBadge: (item: BaseEntity) => { color: string, name: string};
   @Output() select = new EventEmitter<BaseEntity>();
   @Output() remove = new EventEmitter<BaseEntity>();
+  @Output() edit = new EventEmitter<BaseEntity>();
 
   constructor() { }
 
@@ -26,5 +27,9 @@ export class GridEditorCellComponent implements OnInit {
 
   deleteClick() {
     this.remove.emit(this.item);
+  }
+
+  editClick() {
+    this.edit.emit(this.item);
   }
 }

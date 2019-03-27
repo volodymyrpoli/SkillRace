@@ -21,6 +21,7 @@
     (createItem)="createSubtopic($event)"
     (select)="selectSubtopic($event)"
     (removeItem)="deleteSubtopic($event)"
+    (editElement)="editSubtopic($event)"
     [getDataForBadge]="getDataForBadge"
     [items]="getItemsForSubtopic() | async"
     [levels]="levels$ | async"

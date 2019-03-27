@@ -18,6 +18,7 @@
     <app-grid-editor-cell
       (select)="selectItem($event)"
       (remove)="deleteItem($event)"
+      (edit)="editItem($event)"
       *ngFor="let item of items"
       [getDataForBadge]="getDataForBadge"
       [item]="item"

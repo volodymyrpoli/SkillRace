@@ -6,7 +6,7 @@ import { CardComponent } from './components/shared/card/card.component';
 import {
   MatButtonModule,
   MatCardModule,
-  MatCheckboxModule,
+  MatCheckboxModule, MatDialogModule,
   MatDividerModule,
   MatFormFieldModule,
   MatIconModule,
@@ -37,6 +37,7 @@ import { AdminDashboardComponent } from './components/pages/admin-container/admi
 import { UserResultsComponent } from './components/pages/admin-container/user-results/user-results.component';
 import { SettingsComponent } from './components/pages/admin-container/settings/settings.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { EditCellComponent } from './components/pages/admin-container/edit-cell/edit-cell.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     AdminDashboardComponent,
     UserResultsComponent,
     SettingsComponent,
+    EditCellComponent,
   ],
   imports: [
     BrowserModule,
@@ -79,9 +81,13 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     HttpClientModule,
     MatListModule,
     MatSelectModule,
+    MatDialogModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
+  entryComponents: [
+    EditCellComponent
   ],
   bootstrap: [AppComponent]
 })

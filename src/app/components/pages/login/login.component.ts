@@ -20,12 +20,6 @@ export class LoginComponent implements OnInit {
               private formBuilder: FormBuilder,
               private authService: AuthService) { }
 
-  static parseJwt(token: string) {
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    return JSON.parse(window.atob(base64));
-  }
-
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
         login: ['', Validators.required],
@@ -50,7 +44,7 @@ export class LoginComponent implements OnInit {
           if (this.returnUrl) {
             this.router.navigate([this.returnUrl]).catch(alert);
           } else {
-            this.router.navigate(['work/dashboard']).catch(alert);
+            this.router.navigate(['work/grid']).catch(alert);
           }
         }
       });

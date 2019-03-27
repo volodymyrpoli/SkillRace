@@ -11,7 +11,7 @@
   background-color: #dae0e7;
 }
 
-.cell__wrapper:hover .close__button {
+.cell__wrapper:hover .functional__buttons {
   display: block;
 }
 
@@ -19,7 +19,7 @@
   display: none;
 }
 
-.close__button {
+.functional__buttons {
   cursor: pointer;
   display: none;
 }

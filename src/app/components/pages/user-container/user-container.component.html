@@ -1,9 +1,15 @@
 <nav class="user__navigation">
   <div class="navigation__left">
     <a href="#">
-      <mat-icon>home</mat-icon>
+      <div>
+        <mat-icon>home</mat-icon>
+      </div>
+      Home
     </a>
     <a routerLink="/admin" *ngIf="isCurrentUserAdmin()">
+      <div>
+        <mat-icon>work</mat-icon>
+      </div>
       Admin panel
     </a>
   </div>
@@ -13,7 +19,12 @@
   </div>
 
   <div class="navigation__right">
-    <a (click)="logout()"><mat-icon>exit_to_app</mat-icon></a>
+    <a (click)="logout()">
+      Log out
+      <div>
+        <mat-icon>exit_to_app</mat-icon>
+      </div>
+    </a>
   </div>
 </nav>
 <div class="navigation__padding"></div>

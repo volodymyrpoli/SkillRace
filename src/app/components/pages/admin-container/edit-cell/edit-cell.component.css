@@ -1,0 +1,32 @@
+.main__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.action__buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.link__list {
+  max-height: 300px;
+  min-height: 300px;
+  overflow-y: auto;
+}
+
+.link__list mat-list-item:nth-child(even) {
+  background-color: #dae0e7;
+}
+
+.link__list mat-list-item:hover {
+  background-color: #d9e7ff;
+}
+
+.link__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.push__right {
+  margin-left: auto;
+}
