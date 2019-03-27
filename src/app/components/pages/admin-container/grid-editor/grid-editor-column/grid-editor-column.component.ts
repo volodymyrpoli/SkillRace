@@ -32,4 +32,8 @@ export class GridEditorColumnComponent implements OnInit {
   createItemClick(event: Event) {
     this.createFormShow = !this.createFormShow;
   }
+
+  createElement(event: any) {
+    this.createItem.emit(event);
+  }
 }

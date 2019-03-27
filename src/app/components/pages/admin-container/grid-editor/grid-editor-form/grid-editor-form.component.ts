@@ -12,6 +12,7 @@ export class GridEditorFormComponent implements OnInit {
   @Input() withBadge = false;
   @Input() levels: Level[];
   @Output() hideMe = new EventEmitter();
+  @Output() create = new EventEmitter();
 
   formGroup: FormGroup;
 
@@ -21,7 +22,7 @@ export class GridEditorFormComponent implements OnInit {
     if (this.withBadge) {
       this.formGroup = this.formBuilder.group({
         name: ['', Validators.required],
-        level: ['', Validators.required]
+        levelId: ['', Validators.required]
       });
     } else {
       this.formGroup = this.formBuilder.group({
@@ -37,7 +38,9 @@ export class GridEditorFormComponent implements OnInit {
 
   submit() {
     if (this.formGroup.valid) {
-      console.log(this.formGroup.value);
+      this.create.emit(this.formGroup.value);
+      this.formGroup.reset();
+      this.hide();
     }
   }
 }

@@ -4,7 +4,7 @@ import { Domain } from '../../../../entity/Domain';
 import { Topic } from '../../../../entity/Topic';
 import { Subtopic } from '../../../../entity/Subtopic';
 import { BaseEntity } from '../../../../entity/BaseEntity';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Level } from '../../../../entity/Level';
 
 @Component({
@@ -14,9 +14,9 @@ import { Level } from '../../../../entity/Level';
 })
 export class GridEditorComponent implements OnInit {
 
-  selectedDomain$: Subject<Domain> = new Subject();
-  selectedTopic$: Subject<Topic> = new Subject();
-  selectedSubtopic$: Subject<Subtopic> = new Subject();
+  selectedDomain$: BehaviorSubject<Domain> = new BehaviorSubject(null);
+  selectedTopic$: BehaviorSubject<Topic> = new BehaviorSubject(null);
+  selectedSubtopic$: BehaviorSubject<Subtopic> = new BehaviorSubject(null);
   domains$: Subject<Domain[]> = new Subject();
   topics$: Subject<Topic[]> = new Subject();
   subtopics$: Subject<Subtopic[]> = new Subject();
@@ -39,7 +39,9 @@ export class GridEditorComponent implements OnInit {
     );
 
     this.selectedDomain$.subscribe(
-      domains => this.topics$.next(domains.topics)
+      domains => {
+        this.topics$.next(domains ? domains.topics : null);
+      }
     );
 
     this.selectedTopic$.subscribe(
@@ -76,16 +78,26 @@ export class GridEditorComponent implements OnInit {
     this.selectedSubtopic$.next(value as Subtopic);
   }
 
-  createDomain(event: Event) {
-
+  createDomain(event: { name: string }) {
+    this.gridRepository.createDomain(event.name).subscribe(
+      domain => alert(JSON.stringify(domain))
+    );
   }
 
-  createTopic(event: Event) {
-
+  createTopic(event: { name: string }) {
+    this.selectedDomain$.subscribe(domain => {
+      this.gridRepository.createTopic(event.name, domain.id).subscribe(
+        topic => alert(JSON.stringify(topic))
+      );
+    }).unsubscribe();
   }
 
-  createSubtopic(event: Event) {
-
+  createSubtopic(event: { name: string, levelId: number }) {
+    this.selectedTopic$.subscribe(topic => {
+      this.gridRepository.createSubtopic(event.name, event.levelId, topic.id).subscribe(
+        subtopic => alert(JSON.stringify(subtopic))
+      );
+    }).unsubscribe();
   }
 
   getDataForBadge(item: BaseEntity): { color: string, name: string} {

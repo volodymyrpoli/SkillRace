@@ -6,15 +6,15 @@
     </mat-form-field>
 
     <mat-form-field *ngIf="withBadge">
-      <mat-select formControlName="level" placeholder="Select knowledge level">
-        <mat-option *ngFor="let level of levels" [value]="level.name" [ngStyle]="{ 'background-color': level.color }">
+      <mat-select formControlName="levelId" placeholder="Select knowledge level">
+        <mat-option *ngFor="let level of levels" [value]="level.id" [ngStyle]="{ 'background-color': level.color }">
           {{ level.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <div>
       <button mat-raised-button color="primary" type="submit">Add</button>
-      <button mat-stroked-button type="button">Cancel</button>
+      <button mat-stroked-button type="button" (click)="hide()">Cancel</button>
     </div>
   </form>
 </div>

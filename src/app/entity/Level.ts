@@ -1,12 +1,12 @@
 import { BaseEntity } from './BaseEntity';
 
 export class Level extends BaseEntity {
-  order: number;
+  rank: number;
   color: string;
 
   constructor(id: number, name: string, order: number, color: string) {
     super(id, name);
-    this.order = order;
+    this.rank = order;
     this.color = color;
   }
 

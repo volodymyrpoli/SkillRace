@@ -5,13 +5,13 @@
       <td></td>
       <app-kanban-header-cell
         [level]="level"
-        *ngFor="let level of (levels$ | async) | sortBy:'order'">
+        *ngFor="let level of (levels$ | async) | sortBy:'rank'">
       </app-kanban-header-cell>
     </tr>
     </thead>
     <tbody>
     <app-kanban-row
-      *ngFor="let domain of (domains$ | async) | sortBy:'order'"
+      *ngFor="let domain of (domains$ | async) | sortBy:'rank'"
       [domain]="domain"
       [levels]="levels$ | async">
     </app-kanban-row>

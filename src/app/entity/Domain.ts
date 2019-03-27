@@ -3,11 +3,11 @@ import { BaseEntity } from './BaseEntity';
 
 export class Domain extends BaseEntity {
   topics: Topic[];
-  order: number;
+  rank: number;
 
   constructor(id: number, name: string, order: number) {
     super(id, name);
-    this.order = order;
+    this.rank = order;
     this.topics = [];
   }
 

@@ -10,7 +10,8 @@
       *ngIf="createFormShow"
       (hideMe)="createFormShow = false"
       [withBadge]="withBadge"
-      [levels]="levels">
+      [levels]="levels"
+      (create)="createElement($event)">
 
     </app-grid-editor-form>
     <app-grid-editor-cell
