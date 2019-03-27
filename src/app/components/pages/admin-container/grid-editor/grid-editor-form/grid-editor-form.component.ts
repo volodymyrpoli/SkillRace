@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
 })
 export class GridEditorFormComponent implements OnInit {
 
+  @Input() newElementName: string;
   @Input() withBadge = false;
   @Input() levels: Level[];
   @Output() hideMe = new EventEmitter();

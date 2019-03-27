@@ -7,20 +7,21 @@
   </div>
   <div class="grid__column__wrapper">
     <app-grid-editor-form
-      *ngIf="createFormShow"
+      (create)="createElement($event)"
       (hideMe)="createFormShow = false"
-      [withBadge]="withBadge"
+      *ngIf="createFormShow"
+      [newElementName]="category"
       [levels]="levels"
-      (create)="createElement($event)">
+      [withBadge]="withBadge">
 
     </app-grid-editor-form>
     <app-grid-editor-cell
+      (select)="selectItem($event)"
       *ngFor="let item of items"
+      [getDataForBadge]="getDataForBadge"
       [item]="item"
       [selected]="item === selectedItem"
-      (select)="selectItem($event)"
-      [withBadge]="withBadge"
-      [getDataForBadge]="getDataForBadge">
+      [withBadge]="withBadge">
 
     </app-grid-editor-cell>
   </div>

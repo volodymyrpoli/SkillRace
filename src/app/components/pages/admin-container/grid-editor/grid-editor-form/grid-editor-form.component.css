@@ -5,6 +5,10 @@ form {
   z-index: 12;
 }
 
+h3 {
+  margin: 0;
+}
+
 .form__wrapper {
   z-index: 12;
   background-color: white;
@@ -19,6 +23,6 @@ form {
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
   z-index: 1;
 }

@@ -1,6 +1,7 @@
 <div class="cursor__catcher" (click)="hide()"></div>
 <div class="form__wrapper">
   <form [formGroup]="formGroup" (ngSubmit)="submit()">
+    <h3 *ngIf="newElementName?.length > 0">{{ 'New element for ' + newElementName?.toLowerCase() }}</h3>
     <mat-form-field>
       <input matInput placeholder="Write title for element" type="text" formControlName="name">
     </mat-form-field>
