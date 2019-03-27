@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { KanbanGrid } from './entity/KanbanGrid';
-import { Level } from './entity/Level';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +6,9 @@ import { Level } from './entity/Level';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
   ngOnInit(): void {
+    localStorage.setItem('currentUser', JSON.stringify({ token: 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2b2xvZHlteXIiLCJleHAiOjE1NTQyOTYwMzAsImlhdCI6MTU1MzY5MTIzMH0.mmJfOLbrD7bQsBqkXg77U8vninRuLQpQmsYnfuqOKDFDow_U-mHQES4k5XhfUYbL4aVngeNEXJ6R4pRp4RuWaQ' }));
   }
-
-
 
 }

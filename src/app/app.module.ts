@@ -30,12 +30,13 @@ import { GridEditorComponent } from './components/pages/admin-container/board-ed
 import { GridEditorColumnComponent } from './components/pages/admin-container/board-editor/grid-editor/grid-editor-column/grid-editor-column.component';
 import { GridEditorCellComponent } from './components/pages/admin-container/board-editor/grid-editor/grid-editor-cell/grid-editor-cell.component';
 import { GridEditorBadgeComponent } from './components/pages/admin-container/board-editor/grid-editor/grid-editor-badge/grid-editor-badge.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { GridEditorFormComponent } from './components/pages/admin-container/board-editor/grid-editor/grid-editor-form/grid-editor-form.component';
 import { BoardEditorComponent } from './components/pages/admin-container/board-editor/board-editor.component';
 import { AdminDashboardComponent } from './components/pages/admin-container/admin-dashboard/admin-dashboard.component';
 import { UserResultsComponent } from './components/pages/admin-container/user-results/user-results.component';
 import { SettingsComponent } from './components/pages/admin-container/settings/settings.component';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,9 @@ import { SettingsComponent } from './components/pages/admin-container/settings/s
     MatListModule,
     MatSelectModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
