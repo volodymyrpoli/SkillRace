@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GridRepositoryService } from '../../../../service/grid-repository.service';
+import { GridRepositoryService } from '../../../../repository/grid-repository.service';
 import { Observable, Subject } from 'rxjs';
 import { Domain } from '../../../../entity/Domain';
 import { Level } from '../../../../entity/Level';

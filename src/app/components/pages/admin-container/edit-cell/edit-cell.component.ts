@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Subtopic } from '../../../../entity/Subtopic';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { GridRepositoryService } from '../../../../service/grid-repository.service';
+import { GridRepositoryService } from '../../../../repository/grid-repository.service';
 import { Subject } from 'rxjs';
 import { Level } from '../../../../entity/Level';
 

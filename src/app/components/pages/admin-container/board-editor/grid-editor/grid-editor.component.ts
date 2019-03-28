@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GridRepositoryService } from '../../../../../service/grid-repository.service';
+import { GridRepositoryService } from '../../../../../repository/grid-repository.service';
 import { Domain } from '../../../../../entity/Domain';
 import { Topic } from '../../../../../entity/Topic';
 import { Subtopic } from '../../../../../entity/Subtopic';
@@ -8,6 +8,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Level } from '../../../../../entity/Level';
 import { MatDialog } from '@angular/material';
 import { EditCellComponent } from '../../edit-cell/edit-cell.component';
+import { DomainService } from '../../../../../service/domain.service';
 
 @Component({
   selector: 'app-grid-editor',
@@ -25,10 +26,13 @@ export class GridEditorComponent implements OnInit {
   levels$: Subject<Level[]> = new Subject();
 
   constructor(private gridRepository: GridRepositoryService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private domainService: DomainService) { }
 
   ngOnInit() {
-    this.gridRepository.getDomains().subscribe(
+    this.domainService.load();
+
+    this.domainService.domains$.subscribe(
       domains => {
         this.domains$.next(domains);
         if (domains.length > 0) {
@@ -82,9 +86,7 @@ export class GridEditorComponent implements OnInit {
   }
 
   createDomain(event: { name: string }) {
-    this.gridRepository.createDomain(event.name).subscribe(
-      domain => alert(JSON.stringify(domain))
-    );
+    this.domainService.createDomain(event.name);
   }
 
   createTopic(event: { name: string }) {
@@ -112,7 +114,7 @@ export class GridEditorComponent implements OnInit {
   }
 
   deleteDomain(domain: BaseEntity) {
-    this.gridRepository.deleteElement(domain.id, 'domains');
+    this.domainService.deleteDomain(domain as Domain);
   }
 
   deleteTopic(topic: BaseEntity) {

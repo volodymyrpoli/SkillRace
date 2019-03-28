@@ -38,6 +38,7 @@ import { UserResultsComponent } from './components/pages/admin-container/user-re
 import { SettingsComponent } from './components/pages/admin-container/settings/settings.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { EditCellComponent } from './components/pages/admin-container/edit-cell/edit-cell.component';
+import { SubtopicRepositoryComponent } from './service/subtopic-repository/subtopic-repository.component';
 
 @NgModule({
   declarations: [

@@ -1,3 +1,8 @@
+import { BehaviorSubject, Subject } from 'rxjs';
+import { GridEvent } from '../entity/GridEvent';
+import { scan } from 'rxjs/operators';
+import { BaseEntity } from '../entity/BaseEntity';
+
 export class Utils {
 
   static parseJwt(token: string) {
@@ -16,4 +21,44 @@ export class Utils {
       }
     });
   }
+
+  static createEventHandler<T>(subject: Subject<T[]>): Subject<GridEvent> {
+    const observable = new Subject<GridEvent>();
+    observable.pipe(
+      scan((acc: T[], event: GridEvent): T[] => {
+        console.log(event.type);
+        return event.handler(acc, event.payload);
+      }, [])
+    ).subscribe(item => {
+      subject.next(item);
+    });
+    return observable;
+  }
+
+  static createEventHandlerForBehavior<T>(subject: BehaviorSubject<T[]>): Subject<GridEvent> {
+    const observable = new Subject<GridEvent>();
+    observable.pipe(
+      scan((acc: T[], event: GridEvent): T[] => {
+        console.log(event.type);
+        return event.handler(acc, event.payload);
+      }, [])
+    ).subscribe(item => {
+      subject.next(item);
+    });
+    return observable;
+  }
+
+  static replace(acc: any[], payload: any): any[] {
+    return payload;
+  }
+
+  static add(acc: any[], payload: any): any[] {
+    acc.push(payload);
+    return acc;
+  }
+
+  static remove(acc: BaseEntity[], payload: BaseEntity): any[] {
+    return acc.filter(item => item !== payload);
+  }
+
 }
