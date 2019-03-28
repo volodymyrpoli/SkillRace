@@ -1,22 +1,44 @@
 <h1 mat-dialog-title>Edit subtopic</h1>
 <mat-divider></mat-divider>
 <div mat-dialog-content class="main__content">
+
   <aside>
     <form [formGroup]="subtopicForm">
       <h2>Information</h2>
+
       <mat-form-field>
-        <input matInput [value]="subtopic.name" (keyup)="changeNameHandler($event)" placeholder="Subtopic title">
-        <mat-hint *ngIf="!subtopicNameSaving; else saving_process">Changes saved</mat-hint>
-        <ng-template #saving_process>
+        <input
+          matInput
+          [value]="subtopic.name"
+          (keyup)="changeNameHandler($event)"
+          placeholder="Subtopic title">
+        <mat-hint
+          *ngIf="!subtopicNameSaving; else saving_name_process">
+          Changes saved
+        </mat-hint>
+        <ng-template #saving_name_process>
           <mat-hint>Save changing...</mat-hint>
         </ng-template>
       </mat-form-field>
+
       <mat-form-field>
-        <mat-select [value]="subtopic.level.id" (selectionChange)="changeLevelHandler($event)">
-          <mat-option *ngFor="let level of (getLevels() | async) | sortBy:'rank'" [value]="level.id" [ngStyle]="{ 'background-color': level.color }">
+        <mat-select
+          [value]="subtopic.level.id"
+          (selectionChange)="changeLevelHandler($event)">
+          <mat-option
+            *ngFor="let level of (getLevels() | async) | sortBy:'rank'"
+            [value]="level.id"
+            [ngStyle]="{ 'background-color': level.color }">
             {{ level.name }}
           </mat-option>
         </mat-select>
+        <mat-hint
+          *ngIf="!subtopicLevelSaving; else saving_level_process">
+          Changes saved
+        </mat-hint>
+        <ng-template #saving_level_process>
+          <mat-hint>Save changing...</mat-hint>
+        </ng-template>
       </mat-form-field>
     </form>
   </aside>
@@ -24,26 +46,46 @@
   <main>
     <form [formGroup]="linkForm" class="link__form">
       <h2>Attachments</h2>
+
       <mat-form-field>
-        <input matInput formControlName="title" placeholder="Enter title for link" type="text">
+        <input
+          matInput
+          formControlName="title"
+          placeholder="Enter title for link"
+          type="text">
       </mat-form-field>
+
       <mat-form-field>
-        <input matInput formControlName="link" placeholder="Place link here" type="url">
+        <input
+          matInput
+          formControlName="link"
+          placeholder="Place link here"
+          type="url">
       </mat-form-field>
+
       <div class="action__buttons">
         <button mat-raised-button (click)="addLink()">Attach link</button>
       </div>
     </form>
+
     <mat-divider></mat-divider>
+
     <mat-list class="link__list">
       <mat-list-item *ngFor="let attachment of subtopic.attachments">
-        <a [href]="attachment.url">{{ attachment.name }}</a>
+        <a [href]="attachment.url">
+          <span *ngIf="!!attachment.name; else show_url">{{ attachment.name }}</span>
+          <ng-template #show_url>
+            <span>{{ attachment.url }}</span>
+          </ng-template>
+        </a>
         <div class="push__right">
           <mat-icon>delete</mat-icon>
         </div>
       </mat-list-item>
     </mat-list>
+
     <mat-divider></mat-divider>
+
     <span>
       Attached link count: {{ subtopic.attachments.length }}
     </span>

@@ -6,6 +6,7 @@ import { interval, Subject } from 'rxjs';
 import { Level } from '../../../../entity/Level';
 import { GridService } from '../../../../service/grid.service';
 import { debounce, distinctUntilChanged, throttle } from 'rxjs/operators';
+import { Attachment } from '../../../../entity/Attachment';
 
 @Component({
   selector: 'app-edit-cell',
@@ -71,12 +72,12 @@ export class EditCellComponent implements OnInit {
   }
 
   addLink(): void {
+
     if (this.linkForm.valid) {
-      if (!this.linkForm.value.title) {
-
-      } else {
-
-      }
+      this.gridService.attachLinkForSubtopic(
+        this.subtopic,
+        new Attachment(null, this.linkForm.value.title, this.linkForm.value.link)
+      );
       this.linkForm.reset();
     }
   }

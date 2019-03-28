@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 export class AttachmentRepositoryService {
 
   private BASE_URL = environment.BASE_URL;
-  private COLLECTIONS = 'subtopics';
+  private COLLECTIONS = 'attachments';
 
   constructor(private httpClient: HttpClient) { }
 

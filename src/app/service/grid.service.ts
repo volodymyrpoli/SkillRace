@@ -10,6 +10,8 @@ import { TopicRepositoryService } from '../repository/topic-repository.service';
 import { SubtopicRepositoryService } from '../repository/subtopic-repository.service';
 import { Level } from '../entity/Level';
 import { LevelRepositoryService } from '../repository/level-repository.service';
+import { Attachment } from '../entity/Attachment';
+import { AttachmentRepositoryService } from '../repository/attachment-repository.service';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +35,8 @@ export class GridService {
   constructor(private domainRepository: DomainRepositoryService,
               private topicRepository: TopicRepositoryService,
               private subtopicRepository: SubtopicRepositoryService,
-              private levelRepository: LevelRepositoryService) {
+              private levelRepository: LevelRepositoryService,
+              private attachmentRepository: AttachmentRepositoryService) {
     this.domainsHandler$ = Utils.createEventHandlerForBehavior<Domain>(this.domains$);
     this.topicsHandler$ = Utils.createEventHandlerForBehavior<Topic>(this.topics$);
     this.subtopicsHandler$ = Utils.createEventHandlerForBehavior<Subtopic>(this.subtopics$);
@@ -159,6 +162,22 @@ export class GridService {
             acc
               .filter(item => item.id === payload.newSubtopic.id)
               .map(item => item.level = payload.newSubtopic.level);
+            return acc;
+          }
+        ));
+      });
+  }
+
+  attachLinkForSubtopic(subtopic: Subtopic, attachment: Attachment) {
+    this.attachmentRepository.create(attachment.name, attachment.url, subtopic.id)
+      .subscribe(newAttachment => {
+        this.subtopicsHandler$.next(new GridEvent(
+          'ADD_ATTACHMENT',
+          { subtopic, attachment: newAttachment },
+          (acc, payload) => {
+            acc
+              .filter(item => item.id === payload.subtopic.id)
+              .map(item => item.attachments.push(payload.attachment));
             return acc;
           }
         ));
