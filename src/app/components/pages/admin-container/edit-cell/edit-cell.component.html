@@ -2,17 +2,23 @@
 <mat-divider></mat-divider>
 <div mat-dialog-content class="main__content">
   <aside>
-    <h2>Information</h2>
-    <mat-form-field>
-      <input matInput [(ngModel)]="subtopic.name" placeholder="Subtopic title">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-select [value]="subtopic.level.id">
-        <mat-option *ngFor="let level of (getLevels() | async) | sortBy:'rank'" [value]="level.id" [ngStyle]="{ 'background-color': level.color }">
-          {{ level.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+    <form [formGroup]="subtopicForm">
+      <h2>Information</h2>
+      <mat-form-field>
+        <input matInput [value]="subtopic.name" (keyup)="changeNameHandler($event)" placeholder="Subtopic title">
+        <mat-hint *ngIf="!subtopicNameSaving; else saving_process">Changes saved</mat-hint>
+        <ng-template #saving_process>
+          <mat-hint>Save changing...</mat-hint>
+        </ng-template>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select [value]="subtopic.level.id" (selectionChange)="changeLevelHandler($event)">
+          <mat-option *ngFor="let level of (getLevels() | async) | sortBy:'rank'" [value]="level.id" [ngStyle]="{ 'background-color': level.color }">
+            {{ level.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
   </aside>
 
   <main>

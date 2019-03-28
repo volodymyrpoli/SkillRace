@@ -4,7 +4,7 @@
     (select)="selectDomain($event)"
     (removeItem)="deleteDomain($event)"
     [items]="getItemsForDomain() | async"
-    [selectedItem]="selectedDomain$ | async"
+    [selectedItem]="getSelectedDomain() | async"
     category="Domains">
   </app-grid-editor-column>
 
@@ -13,7 +13,7 @@
     (select)="selectTopic($event)"
     (removeItem)="deleteTopic($event)"
     [items]="getItemsForTopic() | async"
-    [selectedItem]="selectedTopic$ | async"
+    [selectedItem]="getSelectedTopic() | async"
     category="Topics">
   </app-grid-editor-column>
 
@@ -25,7 +25,7 @@
     [getDataForBadge]="getDataForBadge"
     [items]="getItemsForSubtopic() | async"
     [levels]="getLevels() | async"
-    [selectedItem]="selectedSubtopic$ | async"
+    [selectedItem]="getSelectedSubtopic() | async"
     [withBadge]="true"
     category="Subtopics">
   </app-grid-editor-column>

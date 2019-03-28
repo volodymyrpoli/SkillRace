@@ -23,6 +23,18 @@ export class GridEditorComponent implements OnInit {
     this.gridService.load();
   }
 
+  getSelectedDomain(): Observable<Domain> {
+    return this.gridService.selectedDomain$;
+  }
+
+  getSelectedTopic(): Observable<Topic> {
+    return this.gridService.selectedTopic$;
+  }
+
+  getSelectedSubtopic(): Observable<Subtopic> {
+    return this.gridService.selectedSubtopic$;
+  }
+
   getLevels(): Observable<Level[]> {
     return this.gridService.levels$;
   }

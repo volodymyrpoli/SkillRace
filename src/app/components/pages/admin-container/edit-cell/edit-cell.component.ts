@@ -1,10 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef, MatSelectChange } from '@angular/material';
 import { Subtopic } from '../../../../entity/Subtopic';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { interval, Subject } from 'rxjs';
 import { Level } from '../../../../entity/Level';
 import { GridService } from '../../../../service/grid.service';
+import { debounce, distinctUntilChanged, throttle } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-cell',
@@ -13,8 +14,12 @@ import { GridService } from '../../../../service/grid.service';
 })
 export class EditCellComponent implements OnInit {
 
-  links: {url: string, title: string}[] = [];
   linkForm: FormGroup;
+  subtopicForm: FormGroup;
+  private changeSubtopicName$ = new Subject();
+  private changeSubtopicLevel$ = new Subject();
+  subtopicNameSaving = false;
+  subtopicLevelSaving = false;
 
   constructor(
     public dialogRef: MatDialogRef<EditCellComponent>,
@@ -31,7 +36,34 @@ export class EditCellComponent implements OnInit {
       link: [''],
       title: ['']
     });
-    this.gridService.load();
+
+    this.subtopicForm = this.formBuilder.group({
+      name: [''],
+      level: ['']
+    });
+
+    this.changeSubtopicName$
+      .pipe(
+        debounce(() => interval(2000)),
+        distinctUntilChanged((x: any, y: any) => x.target.value === y.target.value)
+      ).subscribe((event: Event) => {
+        this.subtopicNameSaving = false;
+        this.gridService.changeSubtopicName(this.subtopic, (event.target as HTMLInputElement).value);
+      });
+
+    this.changeSubtopicLevel$
+      .pipe(
+        debounce(() => interval(2000)),
+        distinctUntilChanged((x: any, y: any) => x.value === y.value)
+      ).subscribe((event: MatSelectChange) => {
+        console.dir(event);
+        this.subtopicLevelSaving = false;
+        let level = null;
+        this.gridService.levels$
+          .subscribe(levels => level = levels.find(item => item.id === event.value))
+          .unsubscribe();
+        this.gridService.changeSubtopicLevel(this.subtopic, level);
+    });
   }
 
   getLevels(): Subject<Level[]> {
@@ -41,20 +73,21 @@ export class EditCellComponent implements OnInit {
   addLink(): void {
     if (this.linkForm.valid) {
       if (!this.linkForm.value.title) {
-        this.links.push({
-          url: this.linkForm.value.link,
-          title: this.linkForm.value.link
-        });
+
       } else {
-        this.links.push({
-          url: this.linkForm.value.link,
-          title: this.linkForm.value.title
-        });
+
       }
       this.linkForm.reset();
-      this.linkForm.markAsPristine();
-      this.linkForm.markAsUntouched();
-      // this.linkForm.updateValueAndValidity();
     }
+  }
+
+  changeNameHandler(event: Event) {
+    this.subtopicNameSaving = true;
+    this.changeSubtopicName$.next(event);
+  }
+
+  changeLevelHandler(event: Event) {
+    this.subtopicLevelSaving = true;
+    this.changeSubtopicLevel$.next(event);
   }
 }

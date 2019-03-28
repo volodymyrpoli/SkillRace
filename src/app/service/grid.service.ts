@@ -49,6 +49,10 @@ export class GridService {
           Utils.replace
         ));
       });
+    this.loadLevels();
+  }
+
+  loadLevels() {
     this.levelRepository.getAll()
       .subscribe(levels => {
         this.levelsHandler$.next(new GridEvent(
@@ -127,5 +131,37 @@ export class GridService {
 
   selectSubtopic(subtopic: Subtopic) {
     this.selectedSubtopic$.next(subtopic);
+  }
+
+  changeSubtopicName(subtopic: Subtopic, name: string) {
+    this.subtopicRepository.changeName(subtopic.id, name)
+      .subscribe(newSubtopic => {
+        this.subtopicsHandler$.next(new GridEvent(
+          'CHANGE_SUBTOPIC_NAME',
+          { newSubtopic, name },
+          (acc, payload: { newSubtopic: Subtopic, name: string }) => {
+            acc
+              .filter(item => item.id === payload.newSubtopic.id)
+              .map(item => item.name = payload.name);
+            return acc;
+          }
+        ));
+      });
+  }
+
+  changeSubtopicLevel(subtopic: Subtopic, level: Level) {
+    this.subtopicRepository.changeLevel(subtopic.id, level.id)
+      .subscribe(newSubtopic => {
+        this.subtopicsHandler$.next(new GridEvent(
+          'CHANGE_SUBTOPIC_LEVEL',
+          { newSubtopic },
+          (acc, payload: { newSubtopic: Subtopic }) => {
+            acc
+              .filter(item => item.id === payload.newSubtopic.id)
+              .map(item => item.level = payload.newSubtopic.level);
+            return acc;
+          }
+        ));
+      });
   }
 }
