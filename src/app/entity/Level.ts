@@ -13,4 +13,5 @@ export class Level extends BaseEntity {
   toString(): string {
     return `level[${this.name}]`;
   }
+
 }

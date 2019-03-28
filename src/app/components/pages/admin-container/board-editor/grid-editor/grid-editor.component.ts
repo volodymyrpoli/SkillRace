@@ -125,7 +125,7 @@ export class GridEditorComponent implements OnInit {
 
   editSubtopic(baseEntity: BaseEntity) {
     this.dialog.open(EditCellComponent, {
-      width: '500px',
+      width: '600px',
       data: baseEntity
     });
   }

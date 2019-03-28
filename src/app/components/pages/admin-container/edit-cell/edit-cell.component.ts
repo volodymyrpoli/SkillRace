@@ -58,5 +58,4 @@ export class EditCellComponent implements OnInit {
       // this.linkForm.updateValueAndValidity();
     }
   }
-
 }

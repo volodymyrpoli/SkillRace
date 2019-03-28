@@ -1,39 +1,50 @@
 <h1 mat-dialog-title>Edit subtopic</h1>
+<mat-divider></mat-divider>
 <div mat-dialog-content class="main__content">
-  <mat-form-field>
-    <input matInput [(ngModel)]="subtopic.name" placeholder="Subtopic title">
-  </mat-form-field>
-  <mat-form-field>
-    <mat-select [(value)]="subtopic.level">
-      <mat-option *ngFor="let level of (levels$ | async) | sortBy:'rank'" [value]="level" [ngStyle]="{ 'background-color': level.color }">
-        {{ level.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <form [formGroup]="linkForm" class="link__form">
+  <aside>
+    <h2>Information</h2>
     <mat-form-field>
-      <input matInput formControlName="title" placeholder="Enter title for link" type="text">
+      <input matInput [(ngModel)]="subtopic.name" placeholder="Subtopic title">
     </mat-form-field>
     <mat-form-field>
-      <input matInput formControlName="link" placeholder="Place link here" type="url">
+      <mat-select [value]="subtopic.level.id">
+        <mat-option *ngFor="let level of (levels$ | async) | sortBy:'rank'" [value]="level.id" [ngStyle]="{ 'background-color': level.color }">
+          {{ level.name }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
-    <div class="action__buttons">
-      <button mat-raised-button (click)="addLink()">Attach link</button>
-    </div>
-  </form>
-  <mat-list class="link__list">
-    <mat-list-item *ngFor="let link of links">
-      <a [href]="link.url">{{ link.title }}</a>
-      <div class="push__right">
-        <mat-icon>delete</mat-icon>
+  </aside>
+
+  <main>
+    <form [formGroup]="linkForm" class="link__form">
+      <h2>Attachments</h2>
+      <mat-form-field>
+        <input matInput formControlName="title" placeholder="Enter title for link" type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="link" placeholder="Place link here" type="url">
+      </mat-form-field>
+      <div class="action__buttons">
+        <button mat-raised-button (click)="addLink()">Attach link</button>
       </div>
-    </mat-list-item>
-  </mat-list>
-  <span>
-    Attached link count: {{ links.length }}
-  </span>
+    </form>
+    <mat-divider></mat-divider>
+    <mat-list class="link__list">
+      <mat-list-item *ngFor="let attachment of subtopic.attachments">
+        <a [href]="attachment.url">{{ attachment.name }}</a>
+        <div class="push__right">
+          <mat-icon>delete</mat-icon>
+        </div>
+      </mat-list-item>
+    </mat-list>
+    <mat-divider></mat-divider>
+    <span>
+      Attached link count: {{ subtopic.attachments.length }}
+    </span>
+  </main>
+
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="subtopic" cdkFocusInitial>Save</button>
+  <!--<button mat-button (click)="onNoClick()">Cancel</button>-->
+  <button mat-button class="push__right" [mat-dialog-close]="subtopic" cdkFocusInitial>Close</button>
 </div>

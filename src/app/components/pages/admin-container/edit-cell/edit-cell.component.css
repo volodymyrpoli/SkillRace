@@ -1,6 +1,15 @@
 .main__content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+}
+
+.main__content > aside {
+  flex: 1;
+  margin-right: 16px;
+}
+
+.main__content > main {
+  flex: 3;
 }
 
 .action__buttons {
@@ -9,8 +18,8 @@
 }
 
 .link__list {
-  max-height: 300px;
-  min-height: 300px;
+  max-height: 220px;
+  min-height: 220px;
   overflow-y: auto;
 }
 
