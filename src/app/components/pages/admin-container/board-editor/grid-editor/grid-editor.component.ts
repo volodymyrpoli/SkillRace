@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { GridRepositoryService } from '../../../../../repository/grid-repository.service';
 import { Domain } from '../../../../../entity/Domain';
 import { Topic } from '../../../../../entity/Topic';
 import { Subtopic } from '../../../../../entity/Subtopic';
 import { BaseEntity } from '../../../../../entity/BaseEntity';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Level } from '../../../../../entity/Level';
 import { MatDialog } from '@angular/material';
 import { EditCellComponent } from '../../edit-cell/edit-cell.component';
-import { DomainService } from '../../../../../service/domain.service';
+import { GridService } from '../../../../../service/grid.service';
 
 @Component({
   selector: 'app-grid-editor',
@@ -17,92 +16,60 @@ import { DomainService } from '../../../../../service/domain.service';
 })
 export class GridEditorComponent implements OnInit {
 
-  selectedDomain$: BehaviorSubject<Domain> = new BehaviorSubject(null);
-  selectedTopic$: BehaviorSubject<Topic> = new BehaviorSubject(null);
-  selectedSubtopic$: BehaviorSubject<Subtopic> = new BehaviorSubject(null);
-  domains$: Subject<Domain[]> = new Subject();
-  topics$: Subject<Topic[]> = new Subject();
-  subtopics$: Subject<Subtopic[]> = new Subject();
-  levels$: Subject<Level[]> = new Subject();
-
-  constructor(private gridRepository: GridRepositoryService,
-              private dialog: MatDialog,
-              private domainService: DomainService) { }
+  constructor(private dialog: MatDialog,
+              private gridService: GridService) { }
 
   ngOnInit() {
-    this.domainService.load();
+    this.gridService.load();
+  }
 
-    this.domainService.domains$.subscribe(
-      domains => {
-        this.domains$.next(domains);
-        if (domains.length > 0) {
-          this.selectedDomain$.next(domains[0]);
-        }
-      }
-    );
-
-    this.gridRepository.getLevels().subscribe(
-      levels => this.levels$.next(levels)
-    );
-
-    this.selectedDomain$.subscribe(
-      domains => {
-        this.topics$.next(domains ? domains.topics : null);
-      }
-    );
-
-    this.selectedTopic$.subscribe(
-      topics => {
-        this.subtopics$.next(topics ? topics.subtopics : null);
-      }
-    );
+  getLevels(): Observable<Level[]> {
+    return this.gridService.levels$;
   }
 
   getItemsForDomain(): Observable<Domain[]> {
-    return this.domains$;
+    return this.gridService.domains$;
   }
 
   getItemsForTopic(): Observable<Topic[]> {
-    return this.topics$;
+    return this.gridService.topics$;
   }
 
   getItemsForSubtopic(): Observable<Subtopic[]> {
-    return this.subtopics$;
+    return this.gridService.subtopics$;
   }
 
   selectDomain(value: BaseEntity) {
-    this.selectedDomain$.next(value as Domain);
-    this.selectedTopic$.next(null);
-    this.selectedSubtopic$.next(null);
+    this.gridService.selectDomain(value as Domain);
+    this.gridService.selectTopic(null);
+    this.gridService.selectSubtopic(null);
   }
 
   selectTopic(value: BaseEntity) {
-    this.selectedTopic$.next(value as Topic);
-    this.selectedSubtopic$.next(null);
+    this.gridService.selectTopic(value as Topic);
+    this.gridService.selectSubtopic(null);
   }
 
   selectSubtopic(value: BaseEntity) {
-    this.selectedSubtopic$.next(value as Subtopic);
+    this.gridService.selectSubtopic(value as Subtopic);
   }
 
   createDomain(event: { name: string }) {
-    this.domainService.createDomain(event.name);
+    this.gridService.createDomain(event.name);
   }
 
   createTopic(event: { name: string }) {
-    this.selectedDomain$.subscribe(domain => {
-      this.gridRepository.createTopic(event.name, domain.id).subscribe(
-        topic => alert(JSON.stringify(topic))
-      );
-    }).unsubscribe();
+    this.gridService.selectedDomain$
+      .subscribe(domain => {
+        this.gridService.createTopic(event.name, domain.id);
+      }).unsubscribe();
   }
 
   createSubtopic(event: { name: string, levelId: number }) {
-    this.selectedTopic$.subscribe(topic => {
-      this.gridRepository.createSubtopic(event.name, event.levelId, topic.id).subscribe(
-        subtopic => alert(JSON.stringify(subtopic))
-      );
-    }).unsubscribe();
+    this.gridService.selectedTopic$
+      .subscribe(topic => {
+        this.gridService.createSubtopic(event.name , topic.id, event.levelId);
+      }).unsubscribe();
   }
 
   getDataForBadge(item: BaseEntity): { color: string, name: string} {
@@ -114,15 +81,15 @@ export class GridEditorComponent implements OnInit {
   }
 
   deleteDomain(domain: BaseEntity) {
-    this.domainService.deleteDomain(domain as Domain);
+    this.gridService.deleteDomain(domain as Domain);
   }
 
   deleteTopic(topic: BaseEntity) {
-    this.gridRepository.deleteElement(topic.id, 'topics');
+    this.gridService.deleteTopic(topic as Topic);
   }
 
   deleteSubtopic(subtopic: BaseEntity) {
-    this.gridRepository.deleteElement(subtopic.id, 'subtopics');
+    this.gridService.deleteSubtopic(subtopic as Subtopic);
   }
 
   editSubtopic(baseEntity: BaseEntity) {

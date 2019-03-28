@@ -8,7 +8,7 @@
     </mat-form-field>
     <mat-form-field>
       <mat-select [value]="subtopic.level.id">
-        <mat-option *ngFor="let level of (levels$ | async) | sortBy:'rank'" [value]="level.id" [ngStyle]="{ 'background-color': level.color }">
+        <mat-option *ngFor="let level of (getLevels() | async) | sortBy:'rank'" [value]="level.id" [ngStyle]="{ 'background-color': level.color }">
           {{ level.name }}
         </mat-option>
       </mat-select>

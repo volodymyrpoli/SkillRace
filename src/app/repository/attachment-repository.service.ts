@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Attachment } from '../entity/Attachment';
 import { environment } from '../../environments/environment';
-import { scan } from 'rxjs/operators';
-import { GridEvent } from '../entity/GridEvent';
 
 @Injectable({
   providedIn: 'root'

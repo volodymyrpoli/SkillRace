@@ -2,9 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Subtopic } from '../../../../entity/Subtopic';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { GridRepositoryService } from '../../../../repository/grid-repository.service';
 import { Subject } from 'rxjs';
 import { Level } from '../../../../entity/Level';
+import { GridService } from '../../../../service/grid.service';
 
 @Component({
   selector: 'app-edit-cell',
@@ -15,13 +15,12 @@ export class EditCellComponent implements OnInit {
 
   links: {url: string, title: string}[] = [];
   linkForm: FormGroup;
-  levels$: Subject<Level[]> = new Subject<Level[]>();
 
   constructor(
     public dialogRef: MatDialogRef<EditCellComponent>,
     @Inject(MAT_DIALOG_DATA) public subtopic: Subtopic,
     private formBuilder: FormBuilder,
-    private gridRepository: GridRepositoryService) {}
+    private gridService: GridService) {}
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -32,11 +31,11 @@ export class EditCellComponent implements OnInit {
       link: [''],
       title: ['']
     });
-    this.gridRepository.getLevels().subscribe(
-      levels => {
-        this.levels$.next(levels);
-      }
-    );
+    this.gridService.load();
+  }
+
+  getLevels(): Subject<Level[]> {
+    return this.gridService.levels$;
   }
 
   addLink(): void {

@@ -24,7 +24,7 @@
     (editElement)="editSubtopic($event)"
     [getDataForBadge]="getDataForBadge"
     [items]="getItemsForSubtopic() | async"
-    [levels]="levels$ | async"
+    [levels]="getLevels() | async"
     [selectedItem]="selectedSubtopic$ | async"
     [withBadge]="true"
     category="Subtopics">

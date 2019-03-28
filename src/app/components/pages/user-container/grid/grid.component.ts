@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GridRepositoryService } from '../../../../repository/grid-repository.service';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Domain } from '../../../../entity/Domain';
 import { Level } from '../../../../entity/Level';
+import { GridService } from '../../../../service/grid.service';
 
 @Component({
   selector: 'app-grid',
@@ -11,19 +11,17 @@ import { Level } from '../../../../entity/Level';
 })
 export class GridComponent implements OnInit {
 
-  domains$: Subject<Domain[]> = new Subject();
-  levels$: Subject<Level[]> = new Subject();
-
-  constructor(private gridRepository: GridRepositoryService) { }
+  constructor(private gridService: GridService) { }
 
   ngOnInit(): void {
-    this.gridRepository.getDomains().subscribe(
-      domains => {
-        this.domains$.next(domains);
-        this.gridRepository.getLevels().subscribe(
-          levels => this.levels$.next(levels)
-        );
-      }
-    );
+    this.gridService.load();
+  }
+
+  getDomains(): Subject<Domain[]> {
+    return this.gridService.domains$;
+  }
+
+  getLevels(): Subject<Level[]> {
+    return this.gridService.levels$;
   }
 }
