@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>
+  {{ data.name }}
+  <app-grid-editor-badge
+    [badgeData]="data.level">
+  </app-grid-editor-badge>
+</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content class="main__content">
+
+  <main>
+
+    <mat-list>
+      <mat-list-item *ngFor="let attachment of data.attachments">
+        <a [href]="attachment.url">{{ attachment.name ? attachment.name : attachment.url }}</a>
+      </mat-list-item>
+    </mat-list>
+
+  </main>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button class="push__right" [mat-dialog-close]="null" cdkFocusInitial>Close</button>
+</div>

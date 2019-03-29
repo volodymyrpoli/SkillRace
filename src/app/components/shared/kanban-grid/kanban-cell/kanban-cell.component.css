@@ -3,9 +3,13 @@
 }
 
 .flex__wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  height: 100%;
+  column-count: 2;
+  column-fill: balance;
+  column-gap: 0;
   width: 300px;
-  padding-left: 6px;
+  padding: 4px;
+}
+
+.flex__wrapper > app-card {
+  display: inline-block;
 }
