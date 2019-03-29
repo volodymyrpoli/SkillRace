@@ -41,8 +41,7 @@ export class EditCellComponent implements OnInit {
 
     this.changeSubtopicName$
       .pipe(
-        debounce(() => interval(500)),
-        distinctUntilChanged((x: any, y: any) => x.target.value === y.target.value)
+        debounce(() => interval(1000))
       ).subscribe((event: Event) => {
         this.subtopicNameSaving = false;
         this.gridService.changeSubtopicName(this.subtopic, (event.target as HTMLInputElement).value);
@@ -50,8 +49,7 @@ export class EditCellComponent implements OnInit {
 
     this.changeSubtopicLevel$
       .pipe(
-        debounce(() => interval(500)),
-        distinctUntilChanged((x: any, y: any) => x.value === y.value)
+        debounce(() => interval(1000))
       ).subscribe((event: MatSelectChange) => {
         console.dir(event);
         this.subtopicLevelSaving = false;
