@@ -18,8 +18,8 @@ export class LevelRepositoryService {
     return this.httpClient.get<Level[]>(`${this.BASE_URL}/${this.COLLECTIONS}`);
   }
 
-  create(name: string): Observable<Level> {
-    return this.httpClient.post<Level>(`${this.BASE_URL}/${this.COLLECTIONS}`, { name });
+  create(name: string, color: string): Observable<Level> {
+    return this.httpClient.post<Level>(`${this.BASE_URL}/${this.COLLECTIONS}`, { name, color });
   }
 
   delete(id: number): Observable<void> {

@@ -208,4 +208,15 @@ export class GridService {
         ));
       });
   }
+
+  createLevel(name: string, color: string) {
+    this.levelRepository.create(name, color)
+      .subscribe(
+        value => {
+          this.levelsHandler$.next(new GridEvent(
+            'CREATE_LEVEL', value, Utils.add
+          ));
+        }
+      );
+  }
 }

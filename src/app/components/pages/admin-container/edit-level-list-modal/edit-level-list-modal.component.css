@@ -1,0 +1,11 @@
+.color__picker {
+  width: 100px;
+}
+
+mat-list,
+mat-list-item {
+  display: flex;
+  flex-direction: column;
+}
+
+

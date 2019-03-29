@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>Edit levels list</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content class="main__content">
+
+  <main>
+    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+      <mat-form-field>
+        <input
+          matInput
+          formControlName="title"
+          placeholder="Title">
+      </mat-form-field>
+      <mat-form-field class="color__picker">
+        <span matPrefix>#</span>
+        <input
+          matInput
+          formControlName="color"
+          type="text"
+          placeholder="hex color"
+          maxlength="6"
+          (keyup)="changeColor($event)">
+      </mat-form-field>
+      <mat-form-field class="color__picker">
+        <input
+          matInput
+          formControlName="colorPicker"
+          type="color"
+          (change)="changeColor($event)">
+      </mat-form-field>
+
+      <button mat-raised-button type="submit">Add</button>
+    </form>
+  </main>
+
+  <section>
+    <mat-list>
+      <mat-list-item *ngFor="let level of (getLevels() | async) | sortBy:'rank'">
+        <app-grid-editor-badge
+          [badgeData]="{ color: level.color, name: level.name }">
+
+        </app-grid-editor-badge>
+      </mat-list-item>
+    </mat-list>
+  </section>
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button class="push__right" [mat-dialog-close]="null" cdkFocusInitial>Close</button>
+</div>

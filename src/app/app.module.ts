@@ -40,6 +40,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { EditCellComponent } from './components/pages/admin-container/edit-cell/edit-cell.component';
 import { EditBaseEntityComponent } from './components/pages/admin-container/edit-base-entity/edit-base-entity.component';
 import { OpenCardDialogComponent } from './components/shared/card/open-card-dialog/open-card-dialog.component';
+import { EditLevelListModalComponent } from './components/pages/admin-container/edit-level-list-modal/edit-level-list-modal.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { OpenCardDialogComponent } from './components/shared/card/open-card-dial
     EditCellComponent,
     EditBaseEntityComponent,
     OpenCardDialogComponent,
+    EditLevelListModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -94,6 +96,7 @@ import { OpenCardDialogComponent } from './components/shared/card/open-card-dial
     EditCellComponent,
     EditBaseEntityComponent,
     OpenCardDialogComponent,
+    EditLevelListModalComponent,
   ],
   bootstrap: [AppComponent]
 })
