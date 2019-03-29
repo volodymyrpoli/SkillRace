@@ -1,11 +1,11 @@
-import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatSelectChange } from '@angular/material';
 import { Subtopic } from '../../../../entity/Subtopic';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { interval, Subject } from 'rxjs';
 import { Level } from '../../../../entity/Level';
 import { GridService } from '../../../../service/grid.service';
-import { debounce, distinctUntilChanged, throttle } from 'rxjs/operators';
+import { debounce } from 'rxjs/operators';
 import { Attachment } from '../../../../entity/Attachment';
 
 @Component({
