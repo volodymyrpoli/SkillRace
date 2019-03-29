@@ -3,6 +3,7 @@
     (createItem)="createDomain($event)"
     (select)="selectDomain($event)"
     (removeItem)="deleteDomain($event)"
+    (editElement)="editDomain($event)"
     [items]="getItemsForDomain() | async"
     [selectedItem]="getSelectedDomain() | async"
     category="Domains">
@@ -12,6 +13,7 @@
     (createItem)="createTopic($event)"
     (select)="selectTopic($event)"
     (removeItem)="deleteTopic($event)"
+    (editElement)="editTopic($event)"
     [items]="getItemsForTopic() | async"
     [selectedItem]="getSelectedTopic() | async"
     category="Topics">

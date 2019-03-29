@@ -25,4 +25,8 @@ export class DomainRepositoryService {
   delete(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.BASE_URL}/domains/${id}`);
   }
+
+  changeName(id: number, name: string): Observable<Domain> {
+    return this.httpClient.patch<Domain>(`${this.BASE_URL}/domains/${id}`, { name });
+  }
 }

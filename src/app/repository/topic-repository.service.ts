@@ -25,4 +25,8 @@ export class TopicRepositoryService {
   delete(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.BASE_URL}/${this.COLLECTIONS}/${id}`);
   }
+
+  changeName(id: number, name: string): Observable<Topic> {
+    return this.httpClient.patch<Topic>(`${this.BASE_URL}/${this.COLLECTIONS}/${id}`, { name });
+  }
 }

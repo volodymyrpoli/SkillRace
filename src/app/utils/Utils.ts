@@ -2,6 +2,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { GridEvent } from '../entity/GridEvent';
 import { scan } from 'rxjs/operators';
 import { BaseEntity } from '../entity/BaseEntity';
+import { Subtopic } from '../entity/Subtopic';
 
 export class Utils {
 
@@ -59,6 +60,13 @@ export class Utils {
 
   static remove(acc: BaseEntity[], payload: BaseEntity): any[] {
     return acc.filter(item => item !== payload);
+  }
+
+  static replaceField(acc, payload: { id: number, value: any, field: string }): any[] {
+    acc
+      .filter(item => item.id === payload.id)
+      .map(item => item[payload.field] = payload.value);
+    return acc;
   }
 
 }

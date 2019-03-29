@@ -38,6 +38,7 @@ import { UserResultsComponent } from './components/pages/admin-container/user-re
 import { SettingsComponent } from './components/pages/admin-container/settings/settings.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { EditCellComponent } from './components/pages/admin-container/edit-cell/edit-cell.component';
+import { EditBaseEntityComponent } from './components/pages/admin-container/edit-base-entity/edit-base-entity.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { EditCellComponent } from './components/pages/admin-container/edit-cell/
     UserResultsComponent,
     SettingsComponent,
     EditCellComponent,
+    EditBaseEntityComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,7 +89,8 @@ import { EditCellComponent } from './components/pages/admin-container/edit-cell/
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   entryComponents: [
-    EditCellComponent
+    EditCellComponent,
+    EditBaseEntityComponent,
   ],
   bootstrap: [AppComponent]
 })

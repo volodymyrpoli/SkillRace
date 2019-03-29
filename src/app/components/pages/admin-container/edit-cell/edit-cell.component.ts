@@ -28,10 +28,6 @@ export class EditCellComponent implements OnInit {
     private formBuilder: FormBuilder,
     private gridService: GridService) {}
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
   ngOnInit(): void {
     this.linkForm = this.formBuilder.group({
       link: [''],
@@ -45,7 +41,7 @@ export class EditCellComponent implements OnInit {
 
     this.changeSubtopicName$
       .pipe(
-        debounce(() => interval(2000)),
+        debounce(() => interval(500)),
         distinctUntilChanged((x: any, y: any) => x.target.value === y.target.value)
       ).subscribe((event: Event) => {
         this.subtopicNameSaving = false;
@@ -54,7 +50,7 @@ export class EditCellComponent implements OnInit {
 
     this.changeSubtopicLevel$
       .pipe(
-        debounce(() => interval(2000)),
+        debounce(() => interval(500)),
         distinctUntilChanged((x: any, y: any) => x.value === y.value)
       ).subscribe((event: MatSelectChange) => {
         console.dir(event);

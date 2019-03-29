@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Edit element</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content class="main__content">
+
+  <main>
+    <form [formGroup]="formGroup">
+
+      <mat-form-field>
+        <input
+          matInput
+          [value]="data.baseEntity.name"
+          (keyup)="changeNameHandler($event)"
+          placeholder="Subtopic title">
+        <mat-hint
+          *ngIf="!showSavedChangeProcess; else saving_name_process">
+          Changes saved
+        </mat-hint>
+        <ng-template #saving_name_process>
+          <mat-hint>Save changing...</mat-hint>
+        </ng-template>
+      </mat-form-field>
+
+    </form>
+  </main>
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button class="push__right" [mat-dialog-close]="null" cdkFocusInitial>Close</button>
+</div>

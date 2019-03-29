@@ -12,6 +12,7 @@ import { Level } from '../entity/Level';
 import { LevelRepositoryService } from '../repository/level-repository.service';
 import { Attachment } from '../entity/Attachment';
 import { AttachmentRepositoryService } from '../repository/attachment-repository.service';
+import { BaseEntity } from '../entity/BaseEntity';
 
 @Injectable({
   providedIn: 'root'
@@ -136,18 +137,35 @@ export class GridService {
     this.selectedSubtopic$.next(subtopic);
   }
 
+  changeDomainName(domain: BaseEntity, name: string) {
+    this.domainRepository.changeName(domain.id, name)
+      .subscribe((newDomain: Domain) => {
+        this.domainsHandler$.next(new GridEvent(
+          'CHANGE_DOMAIN_NAME',
+          { id: newDomain.id, value: newDomain.name, field: 'name' },
+          Utils.replaceField
+        ));
+      });
+  }
+
+  changeTopicName(topic: BaseEntity, name: string) {
+    this.topicRepository.changeName(topic.id, name)
+      .subscribe((newTopic: Topic) => {
+        this.topicsHandler$.next(new GridEvent(
+          'CHANGE_TOPIC_NAME',
+          { id: newTopic.id, value: newTopic.name, filed: 'name' },
+          Utils.replaceField
+        ));
+      });
+  }
+
   changeSubtopicName(subtopic: Subtopic, name: string) {
     this.subtopicRepository.changeName(subtopic.id, name)
       .subscribe(newSubtopic => {
         this.subtopicsHandler$.next(new GridEvent(
           'CHANGE_SUBTOPIC_NAME',
-          { newSubtopic, name },
-          (acc, payload: { newSubtopic: Subtopic, name: string }) => {
-            acc
-              .filter(item => item.id === payload.newSubtopic.id)
-              .map(item => item.name = payload.name);
-            return acc;
-          }
+          { id: newSubtopic.id, value: newSubtopic.name, field: 'name' },
+          Utils.replaceField
         ));
       });
   }
@@ -157,13 +175,8 @@ export class GridService {
       .subscribe(newSubtopic => {
         this.subtopicsHandler$.next(new GridEvent(
           'CHANGE_SUBTOPIC_LEVEL',
-          { newSubtopic },
-          (acc, payload: { newSubtopic: Subtopic }) => {
-            acc
-              .filter(item => item.id === payload.newSubtopic.id)
-              .map(item => item.level = payload.newSubtopic.level);
-            return acc;
-          }
+          { id: newSubtopic.id, value: newSubtopic.level, field: 'level' },
+          Utils.replaceField
         ));
       });
   }

@@ -8,6 +8,7 @@ import { Level } from '../../../../../entity/Level';
 import { MatDialog } from '@angular/material';
 import { EditCellComponent } from '../../edit-cell/edit-cell.component';
 import { GridService } from '../../../../../service/grid.service';
+import { EditBaseEntityComponent, InputData } from '../../edit-base-entity/edit-base-entity.component';
 
 @Component({
   selector: 'app-grid-editor',
@@ -108,6 +109,30 @@ export class GridEditorComponent implements OnInit {
     this.dialog.open(EditCellComponent, {
       width: '600px',
       data: baseEntity
+    });
+  }
+
+  editDomain(baseEntity: BaseEntity) {
+    this.dialog.open(EditBaseEntityComponent, {
+      width: '300px',
+      data: {
+        baseEntity,
+        callback: (data: BaseEntity): void => {
+          this.gridService.changeDomainName(data, data.name);
+        }
+      }
+    });
+  }
+
+  editTopic(baseEntity: BaseEntity) {
+    this.dialog.open(EditBaseEntityComponent, {
+      width: '300px',
+      data: {
+        baseEntity,
+        callback: (data: BaseEntity): void => {
+          this.gridService.changeTopicName(data, data.name);
+        }
+      }
     });
   }
 }
