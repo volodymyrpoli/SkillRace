@@ -5,6 +5,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 
 .cell__wrapper.selected {
@@ -22,6 +23,7 @@
 .functional__buttons {
   cursor: pointer;
   display: none;
+  user-select: none;
 }
 
 .cell__value {

@@ -21,6 +21,7 @@ export class GridEditorComponent implements OnInit {
               private gridService: GridService) { }
 
   ngOnInit() {
+    this.gridService.clear();
     this.gridService.load();
   }
 

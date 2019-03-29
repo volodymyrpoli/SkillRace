@@ -1,4 +1,4 @@
-<div class="cell__wrapper" [class.selected]="selected" (click)="click($event)">
+<div class="cell__wrapper" [class.selected]="selected" (click)="click($event)" (dblclick)="editClick()">
   <p>
     {{ item.name }}
   </p>

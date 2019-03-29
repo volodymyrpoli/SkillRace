@@ -56,6 +56,18 @@ export class GridService {
     this.loadLevels();
   }
 
+  clear() {
+    this.domainsHandler$.next(new GridEvent(
+      'REMOVE_ALL_DOMAINS', [], Utils.replace
+    ));
+    this.topicsHandler$.next(new GridEvent(
+      'REMOVE_ALL_TOPICS', [], Utils.replace
+    ));
+    this.subtopicsHandler$.next(new GridEvent(
+      'REMOVE_ALL_SUBTOPICS', [], Utils.replace
+    ));
+  }
+
   loadLevels() {
     this.levelRepository.getAll()
       .subscribe(levels => {
