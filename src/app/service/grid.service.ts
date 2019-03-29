@@ -219,4 +219,21 @@ export class GridService {
         }
       );
   }
+
+  deleteAttachment(attachment: Attachment, sutopic: Subtopic) {
+    this.attachmentRepository.delete(attachment.id)
+      .subscribe(() => {
+        this.subtopicsHandler$.next(new GridEvent(
+          'DELETE_ATTACHMENT', { attachmentId: attachment.id, subtopicId: sutopic.id },
+          (acc, payload) => {
+            acc
+              .filter(item => item.id === payload.subtopicId)
+              .map((item: Subtopic) => {
+                item.attachments = item.attachments.filter(value1 => value1.id !== payload.attachmentId);
+              });
+            return acc;
+          }
+        ));
+      });
+  }
 }

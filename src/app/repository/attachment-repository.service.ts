@@ -22,4 +22,7 @@ export class AttachmentRepositoryService {
     return this.httpClient.get<Attachment[]>(`${this.BASE_URL}/${this.COLLECTIONS}`);
   }
 
+  delete(id: number) {
+    return this.httpClient.delete<void>(`${this.BASE_URL}/${this.COLLECTIONS}/${id}`);
+  }
 }

@@ -39,3 +39,7 @@
 .push__right {
   margin-left: auto;
 }
+
+.link__list mat-icon {
+  cursor: pointer;
+}

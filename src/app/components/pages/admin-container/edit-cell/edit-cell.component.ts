@@ -85,4 +85,8 @@ export class EditCellComponent implements OnInit {
     this.subtopicLevelSaving = true;
     this.changeSubtopicLevel$.next(event);
   }
+
+  deleteAttachment(attachment: Attachment) {
+    this.gridService.deleteAttachment(attachment, this.subtopic);
+  }
 }
