@@ -42,7 +42,7 @@ export class EditLevelListModalComponent implements OnInit {
     this.changeColor$
       .pipe(debounce(value => interval(500)))
       .subscribe(value => {
-        if (this.formGroup.valid) {
+        if (this.formGroup.get('color').valid) {
           this.formGroup.patchValue({ color: value, colorPicker: '#' + value });
         }
       });
