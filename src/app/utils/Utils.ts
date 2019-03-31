@@ -15,7 +15,6 @@ export class Utils {
   static isCurrentUserAdmin() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const roles = currentUser.detail.role as { authority: string }[];
-    console.dir(roles);
     return roles.some(role => {
       if (role.authority === 'ROLE_ADMIN') {
         return true;

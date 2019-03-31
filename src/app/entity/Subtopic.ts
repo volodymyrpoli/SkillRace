@@ -4,7 +4,7 @@ import { Attachment } from './Attachment';
 
 export class Subtopic extends BaseEntity {
   level: Level;
-  checked: boolean;
+  done = false;
   attachments: Attachment[];
 
   toString(): string {

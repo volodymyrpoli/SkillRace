@@ -7,14 +7,19 @@
   </mat-card-header>
   <mat-divider></mat-divider>
   <mat-card-content>
-    <div *ngFor="let subtopic of topic.subtopics | sortBy:'checked'">
-      <label class="lesson__checkbox__label" [style.background-color]="subtopic.level.color" (click)="openSubtopic($event, subtopic)">
-        <input
-          class="lesson__checkbox"
-          type="checkbox"
-          [checked]="subtopic.checked">
-        <span>{{ subtopic.name }}</span>
-      </label>
+    <div
+      class="lesson__checkbox__label"
+      [style.background-color]="subtopic.level.color"
+      *ngFor="let subtopic of topic.subtopics | sortBy:'checked'">
+      <input
+        class="lesson__checkbox"
+        type="checkbox"
+        [checked]="subtopic.done"
+        (click)="doneCheckboxClick($event, subtopic)">
+      <span
+        (click)="openSubtopic($event, subtopic)">
+        {{ subtopic.name }}
+      </span>
     </div>
   </mat-card-content>
 </mat-card>

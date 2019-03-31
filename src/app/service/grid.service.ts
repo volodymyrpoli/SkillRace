@@ -13,6 +13,7 @@ import { LevelRepositoryService } from '../repository/level-repository.service';
 import { Attachment } from '../entity/Attachment';
 import { AttachmentRepositoryService } from '../repository/attachment-repository.service';
 import { BaseEntity } from '../entity/BaseEntity';
+import { DoneRepositoryService } from '../repository/done-repository.service';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +38,8 @@ export class GridService {
               private topicRepository: TopicRepositoryService,
               private subtopicRepository: SubtopicRepositoryService,
               private levelRepository: LevelRepositoryService,
-              private attachmentRepository: AttachmentRepositoryService) {
+              private attachmentRepository: AttachmentRepositoryService,
+              private doneRepository: DoneRepositoryService) {
     this.domainsHandler$ = Utils.createEventHandlerForBehavior<Domain>(this.domains$);
     this.topicsHandler$ = Utils.createEventHandlerForBehavior<Topic>(this.topics$);
     this.subtopicsHandler$ = Utils.createEventHandlerForBehavior<Subtopic>(this.subtopics$);
@@ -220,16 +222,39 @@ export class GridService {
       );
   }
 
-  deleteAttachment(attachment: Attachment, sutopic: Subtopic) {
+  deleteAttachment(attachment: Attachment, subtopic: Subtopic) {
     this.attachmentRepository.delete(attachment.id)
       .subscribe(() => {
         this.subtopicsHandler$.next(new GridEvent(
-          'DELETE_ATTACHMENT', { attachmentId: attachment.id, subtopicId: sutopic.id },
+          'DELETE_ATTACHMENT', { attachmentId: attachment.id, subtopicId: subtopic.id },
           (acc, payload) => {
             acc
               .filter(item => item.id === payload.subtopicId)
               .map((item: Subtopic) => {
                 item.attachments = item.attachments.filter(value1 => value1.id !== payload.attachmentId);
+              });
+            return acc;
+          }
+        ));
+      });
+  }
+
+  changeDoneStatus(topic: Topic, subtopic: Subtopic, status: boolean) {
+    this.doneRepository.changeStatus(subtopic.id, status)
+      .subscribe((subtopicWithDone) => {
+        this.domainsHandler$.next(new GridEvent(
+          'CHANGE_STATUS', { topic, subtopicWithDone, status },
+          (acc, payload) => {
+            const foundDomain: Domain = acc
+              .find((domain: Domain) => domain.topics.some(topicItem => topicItem.id === payload.topic.id));
+            foundDomain.topics
+              .filter((topicItem: Topic) => topicItem.id === payload.topic.id)
+              .map(topicItem => {
+                topicItem.subtopics
+                  .filter((subtopicItem: Subtopic) => subtopicItem.id === subtopic.id)
+                  .map((subtopicItem: Subtopic) => {
+                    subtopicItem.done = payload.subtopicWithDone.done;
+                  });
               });
             return acc;
           }
