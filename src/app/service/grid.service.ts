@@ -261,4 +261,22 @@ export class GridService {
         ));
       });
   }
+
+  patchLevel(id: number, title: string, color: string) {
+    this.levelRepository.patch(id, { name: title, color })
+      .subscribe(level => {
+        this.levelsHandler$.next(new GridEvent(
+          'EDIT_LEVEL', level,
+          (acc, payload) => {
+            acc
+              .filter((levelItem: Level) => levelItem.id === payload.id)
+              .map((levelItem: Level) => {
+                levelItem.name = payload.name;
+                levelItem.color = payload.color;
+              });
+            return acc;
+          }
+        ));
+      });
+  }
 }

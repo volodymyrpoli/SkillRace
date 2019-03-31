@@ -25,4 +25,8 @@ export class LevelRepositoryService {
   delete(id: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.BASE_URL}/${this.COLLECTIONS}/${id}`);
   }
+
+  patch(id: number, value: any) {
+    return this.httpClient.patch<Level>(`${this.BASE_URL}/${this.COLLECTIONS}/${id}`, value);
+  }
 }

@@ -15,6 +15,8 @@ export class EditLevelListModalComponent implements OnInit {
 
   formGroup: FormGroup;
   changeColor$ = new Subject<string>();
+  editMode = false;
+  nowEditLevel: Level;
 
   private static getRandomColor() {
     const letters = '0123456789abcdef';
@@ -66,5 +68,38 @@ export class EditLevelListModalComponent implements OnInit {
     } else {
       alert(this.formGroup.errors);
     }
+  }
+
+  editLevel() {
+    if (this.formGroup.valid) {
+      this.gridService.patchLevel(this.nowEditLevel.id, this.formGroup.value.title, '#' + this.formGroup.value.color);
+      this.resetForm();
+      this.editMode = false;
+      this.nowEditLevel = null;
+    }
+  }
+
+  startEditLevel(level: Level) {
+    this.editMode = true;
+    this.nowEditLevel = level;
+    this.formGroup.reset({
+      title: level.name,
+      color: level.color.replace(/#/g, ''),
+      colorPicker: level.color
+    });
+  }
+
+  cancelEditMode() {
+    this.editMode = false;
+    this.resetForm();
+  }
+
+  resetForm() {
+    const randomColor = EditLevelListModalComponent.getRandomColor();
+    this.formGroup.reset({
+      title: '',
+      color: randomColor,
+      colorPicker: '#' + randomColor
+    });
   }
 }

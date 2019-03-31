@@ -27,8 +27,11 @@
           type="color"
           (change)="changeColor($event)">
       </mat-form-field>
-
-      <button mat-raised-button type="submit">Add</button>
+      <button *ngIf="!editMode; else edit_mode" mat-raised-button type="submit">Add</button>
+      <ng-template #edit_mode>
+        <button mat-raised-button type="button" (click)="editLevel()">Change</button>
+        <button mat-stroked-button type="button" (click)="cancelEditMode()">Cancel</button>
+      </ng-template>
     </form>
   </main>
 
@@ -36,6 +39,7 @@
     <mat-list>
       <mat-list-item *ngFor="let level of (getLevels() | async) | sortBy:'rank'">
         <app-grid-editor-badge
+          (click)="startEditLevel(level)"
           [badgeData]="{ color: level.color, name: level.name }">
 
         </app-grid-editor-badge>
