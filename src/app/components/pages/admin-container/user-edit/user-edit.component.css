@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+section {
+  display: flex;
+  flex-direction: row;
+}
+
+aside {
+  flex: 1;
+}
+
+main {
+  flex: 2;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}

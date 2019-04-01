@@ -5,7 +5,6 @@
     </h2>
     <mat-icon
       (click)="createItemClick($event)"
-      [ngStyle]="items && items.length > 0 ? { visibility: 'visible' } : { visibility: 'hidden' }"
       [class.rotate]="createFormShow">add_box</mat-icon>
   </div>
   <div class="grid__column__wrapper">

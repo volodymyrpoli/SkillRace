@@ -41,6 +41,8 @@ import { EditCellComponent } from './components/pages/admin-container/edit-cell/
 import { EditBaseEntityComponent } from './components/pages/admin-container/edit-base-entity/edit-base-entity.component';
 import { OpenCardDialogComponent } from './components/shared/card/open-card-dialog/open-card-dialog.component';
 import { EditLevelListModalComponent } from './components/pages/admin-container/edit-level-list-modal/edit-level-list-modal.component';
+import { UserEditComponent } from './components/pages/admin-container/user-edit/user-edit.component';
+import { HttpErrorInterceptor } from './interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,7 @@ import { EditLevelListModalComponent } from './components/pages/admin-container/
     EditBaseEntityComponent,
     OpenCardDialogComponent,
     EditLevelListModalComponent,
+    UserEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,7 +93,8 @@ import { EditLevelListModalComponent } from './components/pages/admin-container/
     MatDialogModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
   ],
   entryComponents: [
     EditCellComponent,

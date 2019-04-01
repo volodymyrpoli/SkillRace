@@ -1,11 +1,12 @@
 <nav class="admin__navigation">
   <div class="admin__navigation__content">
-    <a routerLink="dashboard" class="logo">Skill race</a>
-    <a routerLink="dashboard">Dashboard</a>
+    <a routerLink="editor" class="logo">Skill race</a>
+    <!--<a routerLink="dashboard">Dashboard</a>-->
     <a routerLink="editor">Board editor</a>
-    <a routerLink="/work">User page</a>
-    <a routerLink="settings" class="push__right">Settings</a>
-    <a routerLink="/login" (click)="logout()">Logout</a>
+    <a routerLink="users/accounts">User accounts</a>
+    <a routerLink="/work">User view</a>
+    <!--<a routerLink="settings" >Settings</a>-->
+    <a routerLink="/login" class="push__right" (click)="logout()">Logout</a>
   </div>
 </nav>
 <div class="navigation__padding"><br></div>

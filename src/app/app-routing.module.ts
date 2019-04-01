@@ -11,6 +11,7 @@ import { SettingsComponent } from './components/pages/admin-container/settings/s
 import { UserResultsComponent } from './components/pages/admin-container/user-results/user-results.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
+import { UserEditComponent } from './components/pages/admin-container/user-edit/user-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'work', pathMatch: 'full' },
@@ -32,8 +33,9 @@ const routes: Routes = [
       { path: '', redirectTo: 'editor', pathMatch: 'full' },
       { path: 'editor', component: BoardEditorComponent },
       { path: 'dashboard', component: AdminDashboardComponent },
+      { path: 'users/accounts', component: UserEditComponent },
       { path: 'settings', component: SettingsComponent },
-      { path: 'users', component: UserResultsComponent },
+      { path: 'users/results', component: UserResultsComponent },
     ]
   },
   { path: 'login', component: LoginComponent }

@@ -53,7 +53,11 @@ export class Utils {
   }
 
   static add(acc: any[], payload: any): any[] {
-    acc.push(payload);
+    if (acc && acc.push) {
+      acc.push(payload);
+    } else {
+      acc = [payload];
+    }
     return acc;
   }
 
