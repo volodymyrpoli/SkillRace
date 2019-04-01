@@ -6,6 +6,26 @@ mat-list,
 mat-list-item {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
 }
 
+mat-list > mat-list-item mat-icon {
+  visibility: hidden;
+}
 
+mat-list > mat-list-item:hover mat-icon {
+  visibility: visible;
+}
+
+mat-list > mat-list-item mat-icon {
+  cursor: pointer;
+}
+
+mat-list > mat-list-item mat-icon:hover {
+  color: indianred;
+}
+
+app-grid-editor-badge {
+  cursor: pointer;
+}

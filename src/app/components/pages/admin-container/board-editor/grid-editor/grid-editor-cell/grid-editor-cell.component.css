@@ -32,3 +32,11 @@
   align-items: center;
   justify-content: space-between;
 }
+
+mat-icon[data-type=delete]:hover {
+  color: indianred;
+}
+
+mat-icon[data-type=edit]:hover {
+  color: steelblue;
+}

@@ -8,7 +8,7 @@
     [badgeData]="getDataForBadge(item)">
   </app-grid-editor-badge>
   <div class="functional__buttons">
-    <mat-icon (click)="editClick()">edit</mat-icon>
-    <mat-icon (click)="deleteClick()">close</mat-icon>
+    <mat-icon (click)="editClick()" data-type="edit">edit</mat-icon>
+    <mat-icon (click)="deleteClick()" data-type="delete">delete</mat-icon>
   </div>
 </div>

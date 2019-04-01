@@ -43,3 +43,7 @@
 .link__list mat-icon {
   cursor: pointer;
 }
+
+mat-icon[date-type=delete]:hover {
+  color: indianred;
+}
